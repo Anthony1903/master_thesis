@@ -144,18 +144,18 @@ class ImportManagersController < ApplicationController
 
 private
 
-  # Extrait les éléments formant le résultat de $csv_loader.load_next, et les
-  # place dans des variables
-  def set_vars(r)
-    
-    @flag = r[:flag]
-    @id = r[:id]
-    @report = r[:report]
-    @mod = r[:mod]
-    @current = r[:current]
-    @stack_initial_size = r[:stack_initial_size]    
-    @stack_current_size = r[:stack_current_size]
+    # Extrait les éléments formant le résultat de $csv_loader.load_next, et les
+    # place dans des variables
+    def set_vars(r)
 
-  end
+        @flag = r[:flag]
+        @id = r[:id]
+        @report = r[:report]
+        @mod = r[:mod]
+        @current = r[:current]
+        @stack_initial_size = r[:stack_initial_size]    
+        @stack_current_size = r[:stack_current_size]
+
+    end
 
 end
