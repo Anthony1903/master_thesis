@@ -11,18 +11,18 @@ class CoursContenu < ActiveRecord::Base
 
     validates_inclusion_of :quadri,
                            :allow_nil => true,
-                           :in => 1..2,	
+                           :in => 1..2, 
                            :message => "Les quadrimestres valables sont 1, 2 ou aucun spécifié"
   
     validates :pmodule, :presence => true
 
     validates_numericality_of :dureeCours, 
-                              :greater_than_or_equal_to => $DUREE_MIN,	
+                              :greater_than_or_equal_to => $DUREE_MIN,  
                               :less_than_or_equal_to => $DUREE_MAX,
                               :message => "La durée d'un cours doit être comprise entre "+$DUREE_MIN.to_s+" et "+$DUREE_MAX.to_s
                             
-    validates_numericality_of :dureeTP,	 
-                              :greater_than_or_equal_to => $DUREE_MIN,	
+    validates_numericality_of :dureeTP,  
+                              :greater_than_or_equal_to => $DUREE_MIN,  
                               :less_than_or_equal_to => $DUREE_MAX,
                               :message => "La durée des TP doit être comprise entre "+$DUREE_MIN.to_s+" et "+$DUREE_MAX.to_s
 

@@ -16,19 +16,19 @@ Faculté en charge : <%= @diplome.facSigle %>
 
 
 <table> 
-	<tr>
-		<th> 
-			<%= button_to "Modifier", 
-				edit_diplome_object_path(@diplome.id),
-				:method=>:get, 
-				:id => "button" %>
-		</th>
-		<th> 
-			<%= button_to "Supprimer",
-				diplome_object_path(@diplome.id), 
-				:method=>:delete, 
-				:class=>:destroy,
-				:confirm=>"Etes-vous certain de vouloir supprimer ce diplome ?", 
-				:id => "button" %>
-		</th>
+    <tr>
+        <th> 
+            <%= button_to "Modifier", 
+                edit_diplome_object_path(@diplome.id),
+                :method=>:get, 
+                :id => "button" %>
+        </th>
+        <th> 
+            <%= button_to "Supprimer",
+                diplome_object_path(@diplome.id), 
+                :method=>:delete, 
+                :class=>:destroy,
+                :confirm=>"Etes-vous certain de vouloir supprimer ce diplome ?", 
+                :id => "button" %>
+        </th>
 </table>

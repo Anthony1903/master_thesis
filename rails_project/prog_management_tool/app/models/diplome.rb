@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class Diplome < ActiveRecord::Base
-	
+  
     attr_accessible :cycle, :sigle, :facSigle, :pmodule_id
   
     belongs_to :pmodule
@@ -10,7 +10,7 @@ class Diplome < ActiveRecord::Base
                            :in => %w(master bac master60 passerelle),
                            :message => "Les cycles valables sont: 'master', 'bac', 'master60' et 'passerelle'"
 
-  	validates :pmodule, :presence => true
+    validates :pmodule, :presence => true
 
     validate :valid_pmodule_type?
 

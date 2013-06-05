@@ -13,18 +13,18 @@
 <b> Langue : </b> <%= pmodule.langue %> 
 <%= render "shared/help", :content => "pmodules/help_messages/langue_info", :size => "20x20" %> </br>
 
-<b> Année d'entrée en vigueur : </b> <%= pmodule.validite %>	
+<b> Année d'entrée en vigueur : </b> <%= pmodule.validite %>    
 <%= render "shared/help", :content => "pmodules/help_messages/validite_info", :size => "20x20" %> </br>
 
-<b> Status : </b> <%= pmodule.status %>	
+<b> Status : </b> <%= pmodule.status %> 
 <%= render "shared/help", :content => "pmodules/help_messages/status_info", :size => "20x20" %> </br>
 
 <b> Commentaires d'import : </b>
 <%= render "shared/help", :content => "pmodules/help_messages/commentaire_import_info", :size => "20x20" %> </br>
 
-<% com = pmodule.import_commentaire %>	
+<% com = pmodule.import_commentaire %>  
 <% if(com != nil) %>
-	<% com.split(";").each do |c| %>
-		&nbsp;&nbsp; - <%= c %> <br>
-	<% end %>
+    <% com.split(";").each do |c| %>
+        &nbsp;&nbsp; - <%= c %> <br>
+    <% end %>
 <% end %>

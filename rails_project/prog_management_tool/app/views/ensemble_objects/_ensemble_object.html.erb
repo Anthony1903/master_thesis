@@ -1,112 +1,112 @@
 <div id="box">
-	<h4> Champs </h4>
-	<%= render 'shared/report_messages', :report => @report %>
+    <h4> Champs </h4>
+    <%= render 'shared/report_messages', :report => @report %>
 
-	<% if(@ensemble_object == nil) then @ensemble_object = ensemble_object end %>
+    <% if(@ensemble_object == nil) then @ensemble_object = ensemble_object end %>
 
-		<b>Crédits max :</b> <%= @ensemble_object.creditsMax %> crédits ECTS 
-	    <%= render "shared/help", :content => "ensemble_objects/help_messages/creditsMax_info", :size => "20x20" %> </br>
+        <b>Crédits max :</b> <%= @ensemble_object.creditsMax %> crédits ECTS 
+        <%= render "shared/help", :content => "ensemble_objects/help_messages/creditsMax_info", :size => "20x20" %> </br>
 
-		<b> Crédits min : </b> <%= @ensemble_object.creditsMin %> crédits ECTS
-	    <%= render "shared/help", :content => "ensemble_objects/help_messages/creditsMin_info", :size => "20x20" %> </br>
+        <b> Crédits min : </b> <%= @ensemble_object.creditsMin %> crédits ECTS
+        <%= render "shared/help", :content => "ensemble_objects/help_messages/creditsMin_info", :size => "20x20" %> </br>
 
-		<%= render 'pmodules/pmodule', :pmodule =>  @ensemble_object %>
+        <%= render 'pmodules/pmodule', :pmodule =>  @ensemble_object %>
 
-		<b> Contenu : </b>
-		<% i = @ensemble_object.get_content_array.size %>
-		<% @ensemble_object.get_content_array.each do |s, a ,o| %>
-		   <% id = Sigle.find_by_sigle(s).pmodule_id %>
-		   <% i -= 1 %>
-		   <% pm = Pmodule.find(id) %>   
-		   <% if pm.mtype == "ensemble" %>
-		   		<%= link_to s, ensemble_object_path(id) %> <%=  a  %> <%=  o  %>
-		   		<%= if i>0 then "," end %>
-		   <% elsif pm.mtype == "cours" %>
-		   		<%= link_to s, cours_object_path(id) %> <%=  a  %> <%=  o  %>
-		   		<%= if i>0 then "," end %>
-		   <% end %>   	
+        <b> Contenu : </b>
+        <% i = @ensemble_object.get_content_array.size %>
+        <% @ensemble_object.get_content_array.each do |s, a ,o| %>
+           <% id = Sigle.find_by_sigle(s).pmodule_id %>
+           <% i -= 1 %>
+           <% pm = Pmodule.find(id) %>   
+           <% if pm.mtype == "ensemble" %>
+                <%= link_to s, ensemble_object_path(id) %> <%=  a  %> <%=  o  %>
+                <%= if i>0 then "," end %>
+           <% elsif pm.mtype == "cours" %>
+                <%= link_to s, cours_object_path(id) %> <%=  a  %> <%=  o  %>
+                <%= if i>0 then "," end %>
+           <% end %>    
 
-		<% end %>
+        <% end %>
 
 
-	    <%= render "shared/help", :content => "ensemble_objects/help_messages/contenu_info", :size => "20x20" %> </br>
+        <%= render "shared/help", :content => "ensemble_objects/help_messages/contenu_info", :size => "20x20" %> </br>
 
 </div>
 
 <table> 
-	<td> 
-		<% if !VersionManager.is_archive_version?(@ensemble_object.sigles_array[0]) %>	
-			<%= button_to "Modifier",  
-				edit_ensemble_object_path(@ensemble_object.id), 
-				:method => "get", 
-				:id => "button" %>
-		<% end %>
-	</td>
-	
-	<td> 
-		<%= button_to "Supprimer", 
-			ensemble_object_path(@ensemble_object.id), 
-			:method=>:delete, 
-			:class=>:destroy,
-			:confirm=>"Etes-vous certain de vouloir supprimer cet ensemble ?", 
-			:id => "button" %>
-	</td>	
+    <td> 
+        <% if !VersionManager.is_archive_version?(@ensemble_object.sigles_array[0]) %>  
+            <%= button_to "Modifier",  
+                edit_ensemble_object_path(@ensemble_object.id), 
+                :method => "get", 
+                :id => "button" %>
+        <% end %>
+    </td>
+    
+    <td> 
+        <%= button_to "Supprimer", 
+            ensemble_object_path(@ensemble_object.id), 
+            :method=>:delete, 
+            :class=>:destroy,
+            :confirm=>"Etes-vous certain de vouloir supprimer cet ensemble ?", 
+            :id => "button" %>
+    </td>   
 </table>
 
 <table>
-	<td> 
-		<%= button_to "Supprimer récursivement", 
-			{:controller => :ensemble_objects, :action => 'destroy', :id => @ensemble_object.id, :recursively => "true" }, 
-			:method => :delete, 
-			:class=>:destroy,
-			:confirm=>"Etes-vous certain de vouloir supprimer cet ensemble ainsi que tout son contenu ?", 
-			:id => "button" %>
-	</td>
+    <td> 
+        <%= button_to "Supprimer récursivement", 
+            {:controller => :ensemble_objects, :action => 'destroy', :id => @ensemble_object.id, :recursively => "true" }, 
+            :method => :delete, 
+            :class=>:destroy,
+            :confirm=>"Etes-vous certain de vouloir supprimer cet ensemble ainsi que tout son contenu ?", 
+            :id => "button" %>
+    </td>
 
-	<td> 
-		<%= render "shared/help", :content => "ensemble_objects/help_messages/supprimerRec_info", :size => "20x20" %> 
-	</td>
-	
-	<td> 
-		 &nbsp;&nbsp;&nbsp;
-	</td>
-	
-	<td> 
-		<% if !VersionManager.is_archive_version?(@ensemble_object.sigles_array[0]) %>	
-			<%= button_to "Outil d'édition", 
-				{:controller => 'creators', :action => 'initialize_tree', :base => @ensemble_object.sigles_array[0]}, 
-				{:method => :post , :id => "button"} 
-			%>
-		<% end %>
-	</td>
+    <td> 
+        <%= render "shared/help", :content => "ensemble_objects/help_messages/supprimerRec_info", :size => "20x20" %> 
+    </td>
+    
+    <td> 
+         &nbsp;&nbsp;&nbsp;
+    </td>
+    
+    <td> 
+        <% if !VersionManager.is_archive_version?(@ensemble_object.sigles_array[0]) %>  
+            <%= button_to "Outil d'édition", 
+                {:controller => 'creators', :action => 'initialize_tree', :base => @ensemble_object.sigles_array[0]}, 
+                {:method => :post , :id => "button"} 
+            %>
+        <% end %>
+    </td>
 
-	<td> 
-		<%= render "shared/help", :content => "ensemble_objects/help_messages/outilEdition_info", :size => "20x20" %> 
-	</td>
+    <td> 
+        <%= render "shared/help", :content => "ensemble_objects/help_messages/outilEdition_info", :size => "20x20" %> 
+    </td>
 
 </table> 
 
 <div id="box">
-	<h4> Structure </h4>
-	<%= render 'pmodules/parents', :pmodule =>  @ensemble_object %>
-	<%  Dir.foreach(File.expand_path("app/assets/images/graphs")) {|f| File.delete(File.expand_path("app/assets/images/graphs/#{f}")) if f != '.' && f != '..'} %> 
-		
-	<% t = Time.now.to_f %>
-	<% @ensemble_object.build_complete_graph(t) %>
+    <h4> Structure </h4>
+    <%= render 'pmodules/parents', :pmodule =>  @ensemble_object %>
+    <%  Dir.foreach(File.expand_path("app/assets/images/graphs")) {|f| File.delete(File.expand_path("app/assets/images/graphs/#{f}")) if f != '.' && f != '..'} %> 
+        
+    <% t = Time.now.to_f %>
+    <% @ensemble_object.build_complete_graph(t) %>
 
-	<div id="graph">
-		<%= image_tag("graphs/c_graph#{@ensemble_object.id}#{t}.png", :alt => "rss feed") %>
-	</div>
+    <div id="graph">
+        <%= image_tag("graphs/c_graph#{@ensemble_object.id}#{t}.png", :alt => "rss feed") %>
+    </div>
 
 
-	<% if( !@ensemble_object.get_content_array.empty? ) %>
-		<p>
-			<% @tree_root = Node.new(@ensemble_object) %>
-			<% Tree.build_tree(@tree_root) %>
-			<div id="treeview">
-	    		<%= render 'shared/explorable_ensemble' %>
-			</div>
-			<%= render "shared/help", :content => "ensemble_objects/help_messages/interactiveTree_info", :size => "20x20" %> </br>
-		</p>
-	<% end %>
+    <% if( !@ensemble_object.get_content_array.empty? ) %>
+        <p>
+            <% @tree_root = Node.new(@ensemble_object) %>
+            <% Tree.build_tree(@tree_root) %>
+            <div id="treeview">
+                <%= render 'shared/explorable_ensemble' %>
+            </div>
+            <%= render "shared/help", :content => "ensemble_objects/help_messages/interactiveTree_info", :size => "20x20" %> </br>
+        </p>
+    <% end %>
 </div>

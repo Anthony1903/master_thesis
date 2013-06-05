@@ -6,13 +6,13 @@
 <ul class="diplome list">
 
   <% @diplomes.each do |diplome| %>
-	
-	<li>
- 		<%= link_to diplome.sigle, diplome_object_path(diplome.id) %>
- 		<div id="info">
-   			<%= diplome.cycle%>, <%= diplome.facSigle %>
-   		</div>
-	</li>
+    
+    <li>
+        <%= link_to diplome.sigle, diplome_object_path(diplome.id) %>
+        <div id="info">
+            <%= diplome.cycle%>, <%= diplome.facSigle %>
+        </div>
+    </li>
   
   <% end %>
 

@@ -2,24 +2,24 @@
 <% ecs = EnsembleContenu.find_all_by_contenu_id(pmodule.id) %>
 
 <% if(ecs != nil && ecs.length > 0) %>
-	Parent(s) <%= if(ecs.size>1) then "s" else "" end %> :  <br>
-	<%
-		ecs.each do |ec|
-			pm = Pmodule.find(ec.pmodule_id)
-			s = Sigle.find_by_pmodule_id(pm.id)
-			if(s!=nil)
-				if(pm.mtype == "cours")
-	%>
-					&nbsp;&nbsp; - <%= link_to s.sigle, cours_object_path(pm.id) %> <br>
-   		 			&nbsp;&nbsp; &nbsp;&nbsp;<%= pm.intitule %> </br> 
-	<%
-				else
-	%>	
-					&nbsp;&nbsp; - <%= link_to s.sigle, ensemble_object_path(pm.id) %> <br>
-   					&nbsp;&nbsp; &nbsp;&nbsp;<%= pm.intitule %> </br> 
-	<%
-				end
-			end
-		end
-	%>
+    Parent(s) <%= if(ecs.size>1) then "s" else "" end %> :  <br>
+    <%
+        ecs.each do |ec|
+            pm = Pmodule.find(ec.pmodule_id)
+            s = Sigle.find_by_pmodule_id(pm.id)
+            if(s!=nil)
+                if(pm.mtype == "cours")
+    %>
+                    &nbsp;&nbsp; - <%= link_to s.sigle, cours_object_path(pm.id) %> <br>
+                    &nbsp;&nbsp; &nbsp;&nbsp;<%= pm.intitule %> </br> 
+    <%
+                else
+    %>  
+                    &nbsp;&nbsp; - <%= link_to s.sigle, ensemble_object_path(pm.id) %> <br>
+                    &nbsp;&nbsp; &nbsp;&nbsp;<%= pm.intitule %> </br> 
+    <%
+                end
+            end
+        end
+    %>
 <% end %>

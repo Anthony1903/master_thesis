@@ -5,13 +5,13 @@ Veillez choisir un diplôme pour pouvoir commencer la composition
 
 <ul>
 <% DiplomeObject.load_all.each do |d|%>
-	<li>	
+    <li>    
 
- 		<%= link_to d.sigle, :action => :show, :controller => "compositors", :sigle => d.root_sigle %>
-		<div id="info"> 
-			<%= d.cycle %>, <%= d.facSigle %>
-		</div> 
-	</li>
+        <%= link_to d.sigle, :action => :show, :controller => "compositors", :sigle => d.root_sigle %>
+        <div id="info"> 
+            <%= d.cycle %>, <%= d.facSigle %>
+        </div> 
+    </li>
 <% end %>
 </ul>
 

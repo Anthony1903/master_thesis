@@ -16,7 +16,7 @@ class DiplomeObjectsControllerTest < ActionController::TestCase
 
         e.save
         id = d.save
-        	
+          
         get :show, :id => id
 
         assert_response :success

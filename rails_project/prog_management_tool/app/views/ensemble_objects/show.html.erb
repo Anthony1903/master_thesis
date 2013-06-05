@@ -2,28 +2,28 @@
 <%= render 'context_menu' %>
 
 <% 
-	dlcc = DbLegalConstraintsChecker.new(@ensemble_object) 
-	res = dlcc.check_all()
-	legal_report = dlcc.report
+    dlcc = DbLegalConstraintsChecker.new(@ensemble_object) 
+    res = dlcc.check_all()
+    legal_report = dlcc.report
 %>
 
 <div id="box">
-	<h4> Contraintes légales </h4>
-	<% if(res) %>
-		<div class="success">
-			Contraintes légales satisfaites 
-		</div>
-	<% else %>
-		<div class="error">	
-			Contraintes légales non satisfaites
-			<%= render 'shared/report_messages', :report => legal_report %>
-		</div>	
-	<% end %>
+    <h4> Contraintes légales </h4>
+    <% if(res) %>
+        <div class="success">
+            Contraintes légales satisfaites 
+        </div>
+    <% else %>
+        <div class="error"> 
+            Contraintes légales non satisfaites
+            <%= render 'shared/report_messages', :report => legal_report %>
+        </div>  
+    <% end %>
 </div>
 
 <div id="box">
-	<h4> Présentation d'un ensemble </h4>
-	<%= render @ensemble_object %>
+    <h4> Présentation d'un ensemble </h4>
+    <%= render @ensemble_object %>
 </div>
 
 <%= render 'pmodules/related_versions', :related_versions_list => @related_versions_list, :current_sigle => @ensemble_object.sigles_array[0] %>

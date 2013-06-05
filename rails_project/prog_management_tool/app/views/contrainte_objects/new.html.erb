@@ -4,11 +4,11 @@
 <%= render "shared/help", :content => "contrainte_objects/help_messages/advice_info", :size => "20x20" %> </br>
 
 <%= form_for(@contrainte_object) do |f| %>
-  <%= render 'shared/report_messages', :report => @contrainte_object.report %>
-	  <%= render 'fields', :f => f%>
-	  <div class="actions">
-	    <%= f.submit "Créer", :id => "button" %>
-	  </div>
+    <%= render 'shared/report_messages', :report => @contrainte_object.report %>
+    <%= render 'fields', :f => f%>
+    <div class="actions">
+        <%= f.submit "Créer", :id => "button" %>
+    </div>
 <% end %>
 
 <%= button_to 'Retour', '/contrainte_objects/index', :id => "button" %> 

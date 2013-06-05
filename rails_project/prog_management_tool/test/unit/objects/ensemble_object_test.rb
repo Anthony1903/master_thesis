@@ -3,7 +3,7 @@
 require 'test_helper'
 
 class EnsembleObjectTest < ActiveSupport::TestCase
-	
+    
     test "create/load ensemble" do
 
         c_param = {}

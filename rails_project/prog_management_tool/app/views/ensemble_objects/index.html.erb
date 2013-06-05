@@ -10,13 +10,13 @@
 <ul class="ensemble list">
 
   <% @ensemble_objects.each do |ensemble| %>
-	
-	<li>
- 		<%= link_to Sigle.find_by_pmodule_id(ensemble.id).sigle, ensemble_object_path(ensemble.id) %>
- 		<div id="info">
-   			<%= ensemble.dptCharge %>, <%= ensemble.intitule %>
-   		</div>
-	</li>
+    
+    <li>
+        <%= link_to Sigle.find_by_pmodule_id(ensemble.id).sigle, ensemble_object_path(ensemble.id) %>
+        <div id="info">
+            <%= ensemble.dptCharge %>, <%= ensemble.intitule %>
+        </div>
+    </li>
   
   <% end %>
 

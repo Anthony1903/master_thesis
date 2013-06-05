@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class DiplomeTest < ActiveSupport::TestCase
-	
+    
     def check_create_for(sigle, cycle, facSigle, pmodule_id, validity)
 
         begin

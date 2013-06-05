@@ -9,7 +9,7 @@ class ContrainteObjectsController < ApplicationController
     end
 
     def show
-    	@contrainte_object = ContrainteObject.new
+        @contrainte_object = ContrainteObject.new
         @contrainte_object.load(params[:id])
     end
 

@@ -1,27 +1,27 @@
 
 <div id="nav">
-	<ul>
-		<li>
-	    	<a href="#">
-				<%= link_to "Lister les ensembles", {:controller => "ensemble_objects", :action => "index"}%> 
-		    </a> 
-		</li>
-		<li>
-	    	<a href="#">
-				<%= link_to "Créer un nouvel ensemble", "/create_ensemble" %>
-		    </a> 
-		</li>
-		<li>
-	    	<a href="#">
-				<%= link_to "Edition de programme", "/creator" %>
-		    </a> 
-		</li>
-		<li>
-	    	<a href="#">
-	    		<%= link_to "Comparer deux programmes", {:controller => 'ensemble_objects', :action => 'compaire'}, {:method => :post } %>
-		    </a> 
-		</li>
-	</ul>
+    <ul>
+        <li>
+            <a href="#">
+                <%= link_to "Lister les ensembles", {:controller => "ensemble_objects", :action => "index"}%> 
+            </a> 
+        </li>
+        <li>
+            <a href="#">
+                <%= link_to "Créer un nouvel ensemble", "/create_ensemble" %>
+            </a> 
+        </li>
+        <li>
+            <a href="#">
+                <%= link_to "Edition de programme", "/creator" %>
+            </a> 
+        </li>
+        <li>
+            <a href="#">
+                <%= link_to "Comparer deux programmes", {:controller => 'ensemble_objects', :action => 'compaire'}, {:method => :post } %>
+            </a> 
+        </li>
+    </ul>
 </div>
 
 <%= render 'shared/content_header' %>

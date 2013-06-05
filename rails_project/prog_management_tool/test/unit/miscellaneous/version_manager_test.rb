@@ -4,7 +4,7 @@ require 'test_helper'
 
 class VersionManagerTest < ActionView::TestCase
 
-	def partial_compaire(eo, params)
+    def partial_compaire(eo, params)
 
         assert eo.creditsMin == params[:creditsMin]
         assert eo.creditsMax == params[:creditsMax]
@@ -16,7 +16,7 @@ class VersionManagerTest < ActionView::TestCase
         assert eo.import_commentaire == params[:import_commentaire]
         assert eo.creditsMax == params[:creditsMax]
 
-	end
+    end
 
     def actuel_and_archive?(s1, act_params, s2, arch_params)
 
@@ -322,12 +322,12 @@ class VersionManagerTest < ActionView::TestCase
 
     end
 
-	test "archive_version_params" do
+    test "archive_version_params" do
 
-		eo = default_ensemble("s")
+        eo = default_ensemble("s")
         archive_params = VersionManager.archive_version_params(eo)
 
-		partial_compaire(eo, archive_params)
+        partial_compaire(eo, archive_params)
 
         s = archive_params[:sigles][0]
         assert s.index("_(")!=nil
@@ -347,14 +347,14 @@ class VersionManagerTest < ActionView::TestCase
         assert s.index(Date.today.month.to_s)!=nil
         assert s.index(Date.today.day.to_s)!=nil
 
-	end
+    end
 
-	test "future_version_params" do
+    test "future_version_params" do
 
-		eo = default_ensemble("s")
+        eo = default_ensemble("s")
         future_params = VersionManager.future_version_params(eo)
 
-		partial_compaire(eo, future_params)
+        partial_compaire(eo, future_params)
 
         assert future_params[:sigles][0] == VersionManager.concat_validite(eo.sigles_array()[0], eo.validite)
         assert future_params[:status] == "future"
@@ -363,15 +363,15 @@ class VersionManagerTest < ActionView::TestCase
         future_params = VersionManager.future_version_params(eo)
         assert future_params[:sigles][0] == VersionManager.concat_validite("ABC", eo.validite)
 
-	end
+    end
 
-	test "actuel_version_params" do
+    test "actuel_version_params" do
 
-		eo = default_ensemble("s")
+        eo = default_ensemble("s")
         eo.contenu = "a_(3000) 1 false, b 1 false"
         actuel_params = VersionManager.actuel_version_params(eo)
 
-		partial_compaire(eo, actuel_params)
+        partial_compaire(eo, actuel_params)
 
         assert eo.sigles_array == actuel_params[:sigles]
         assert actuel_params[:status] == "actuel"
@@ -381,53 +381,53 @@ class VersionManagerTest < ActionView::TestCase
         actuel_params = VersionManager.actuel_version_params(eo)
         assert actuel_params[:sigles] == ["ABC"]
 
-	end
+    end
 
-	test "has_suffix" do
+    test "has_suffix" do
 
-		assert VersionManager.has_suffix?("abcd_(abc)")
-		assert VersionManager.has_suffix?("abcd_()")
-		assert !VersionManager.has_suffix?(nil)
-		assert !VersionManager.has_suffix?("abcd")
-		assert !VersionManager.has_suffix?("abcd_")
-		assert !VersionManager.has_suffix?("abcd_(")
-		assert !VersionManager.has_suffix?("abcd_)")
-		assert !VersionManager.has_suffix?("abcd_abc)")
-		assert !VersionManager.has_suffix?("abcd_(abc")
-		assert !VersionManager.has_suffix?("abcd(abc)")
-		assert !VersionManager.has_suffix?("abcd_)abc(")
+        assert VersionManager.has_suffix?("abcd_(abc)")
+        assert VersionManager.has_suffix?("abcd_()")
+        assert !VersionManager.has_suffix?(nil)
+        assert !VersionManager.has_suffix?("abcd")
+        assert !VersionManager.has_suffix?("abcd_")
+        assert !VersionManager.has_suffix?("abcd_(")
+        assert !VersionManager.has_suffix?("abcd_)")
+        assert !VersionManager.has_suffix?("abcd_abc)")
+        assert !VersionManager.has_suffix?("abcd_(abc")
+        assert !VersionManager.has_suffix?("abcd(abc)")
+        assert !VersionManager.has_suffix?("abcd_)abc(")
 
-	end	
+    end 
 
-	test "remove_suffix" do
+    test "remove_suffix" do
 
-		assert VersionManager.remove_suffix("abcd_(abc)") == "abcd"
-		assert VersionManager.remove_suffix("abcd_()") == "abcd"
-		assert VersionManager.remove_suffix("abcd_(abc))") == "abcd"
-		assert VersionManager.remove_suffix("abcd_((abc)") == "abcd"
-		assert VersionManager.remove_suffix("abcd_(_(abc)") == "abcd"
-		assert VersionManager.remove_suffix("abcd_(_(abc))") == "abcd"
-		assert VersionManager.remove_suffix("abcd") == "abcd"
-		assert VersionManager.remove_suffix("abcd_") == "abcd_"
-		assert VersionManager.remove_suffix("abcd(") == "abcd("
-		assert VersionManager.remove_suffix("abcd)") == "abcd)"
-		assert VersionManager.remove_suffix("abcd_(") == "abcd_("
-		assert VersionManager.remove_suffix("abcd_)") == "abcd_)"
-		assert VersionManager.remove_suffix("abcd_)(") == "abcd_)("
-		assert VersionManager.remove_suffix(nil) == nil
+        assert VersionManager.remove_suffix("abcd_(abc)") == "abcd"
+        assert VersionManager.remove_suffix("abcd_()") == "abcd"
+        assert VersionManager.remove_suffix("abcd_(abc))") == "abcd"
+        assert VersionManager.remove_suffix("abcd_((abc)") == "abcd"
+        assert VersionManager.remove_suffix("abcd_(_(abc)") == "abcd"
+        assert VersionManager.remove_suffix("abcd_(_(abc))") == "abcd"
+        assert VersionManager.remove_suffix("abcd") == "abcd"
+        assert VersionManager.remove_suffix("abcd_") == "abcd_"
+        assert VersionManager.remove_suffix("abcd(") == "abcd("
+        assert VersionManager.remove_suffix("abcd)") == "abcd)"
+        assert VersionManager.remove_suffix("abcd_(") == "abcd_("
+        assert VersionManager.remove_suffix("abcd_)") == "abcd_)"
+        assert VersionManager.remove_suffix("abcd_)(") == "abcd_)("
+        assert VersionManager.remove_suffix(nil) == nil
 
-	end	
+    end 
 
-	test "concat_time" do
+    test "concat_time" do
 
-    	s = VersionManager.concat_time("abcd")
+        s = VersionManager.concat_time("abcd")
         assert s.index("_(")!=nil
         assert s.index(")")!=nil
         assert s.index(Date.today.year.to_s)!=nil
         assert s.index(Date.today.month.to_s)!=nil
         assert s.index(Date.today.day.to_s)!=nil
 
-    	s = VersionManager.concat_time(nil)
+        s = VersionManager.concat_time(nil)
         assert s.index("_(")!=nil
         assert s.index(")")!=nil
         assert s.index(Date.today.year.to_s)!=nil
@@ -436,12 +436,12 @@ class VersionManagerTest < ActionView::TestCase
 
     end
 
-	test "concat_validite " do
+    test "concat_validite " do
 
         assert VersionManager.concat_validite("abcd",2011) == "abcd_(2011)"
         assert VersionManager.concat_validite("",2012) == "_(2012)"
         assert VersionManager.concat_validite(nil,2013) == "_(2013)"
-	
+    
     end
 
     test "params_according_to_validity" do

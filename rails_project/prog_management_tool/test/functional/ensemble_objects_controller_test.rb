@@ -26,7 +26,7 @@ class EnsembleObjectsControllerTest < ActionController::TestCase
 
         e = default_ensemble("e")
         id = e.save()
-        	
+          
         get :show, :id => id
 
         assert_response :success

@@ -16,7 +16,7 @@ class ContrainteObjectsControllerTest < ActionController::TestCase
 
         e.save
         id = c.save
-        	
+            
         get :show, :id => id
 
         assert_response :success

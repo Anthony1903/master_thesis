@@ -3,21 +3,21 @@
 
 <% if flash[:error] -%>
 
-	<p class='error'><%=h flash[:error] %></p>
-	<% flash[:error] = nil %>	
-	
+    <p class='error'><%=h flash[:error] %></p>
+    <% flash[:error] = nil %>   
+    
 <% end -%>
 
 <% if flash[:success] -%>
 
-	<p class='success'><%=h flash[:success] %></p>
-	<% flash[:success] = nil %>
+    <p class='success'><%=h flash[:success] %></p>
+    <% flash[:success] = nil %>
 
 <% end -%>
 
 <% if flash[:message] -%>
 
-	<p class='message'><%=h flash[:message] %></p>
-	<% flash[:message] = nil %>
+    <p class='message'><%=h flash[:message] %></p>
+    <% flash[:message] = nil %>
 
 <% end -%>

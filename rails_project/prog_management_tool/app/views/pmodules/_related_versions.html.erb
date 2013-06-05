@@ -8,26 +8,26 @@
 		<ul>
 			<% related_versions_list.each do |v| %>
 				<% id = Sigle.find_by_sigle(v).pmodule_id %>
-			    <% pm = Pmodule.find(id) %>
-		 		
+				<% pm = Pmodule.find(id) %>
+				
 				<li> 
 					<table> 
 					<td>
-				 		<% if pm.mtype == "ensemble" %>
-					   		<%= link_to v, ensemble_object_path(id) %>
+						<% if pm.mtype == "ensemble" %>
+							<%= link_to v, ensemble_object_path(id) %>
 					   <% else %>
-					   		<%= link_to v, cours_object_path(id) %>
+							<%= link_to v, cours_object_path(id) %>
 					   <% end %>
-				    </td>			
+					</td>			
 					<td>
-				    	<%= button_to "Comparer",
-				    		{:controller => 'ensemble_objects', 
-				    			:action => 'compaire', 
-				    			:sigle => v, 
-				    			:sigle2 => current_sigle}, 
-				    		{:method => :post, 
-				    			:id => "button" } %>
-				    </td>			
+						<%= button_to "Comparer",
+							{:controller => 'ensemble_objects', 
+								:action => 'compaire', 
+								:sigle => v, 
+								:sigle2 => current_sigle}, 
+							{:method => :post, 
+								:id => "button" } %>
+					</td>			
 					</table>
 				</li>
 			<% end %>

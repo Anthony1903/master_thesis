@@ -1,21 +1,21 @@
 
 <!-- 
-	nécessite  :
-	root : un noeud de type "node"
-	editable : un booléen indiquant si le côté est éditable ou non	
+    nécessite  :
+    root : un noeud de type "node"
+    editable : un booléen indiquant si le côté est éditable ou non  
  --> 
 
 <% def loop(current, depth, parent, root, editable) %>
 
-		<tr class="restricted">
-			<%= render 'line', :depth => depth, :parent => parent, :node => current, :root => root, :editable => editable %>
-		</tr>
+        <tr class="restricted">
+            <%= render 'line', :depth => depth, :parent => parent, :node => current, :root => root, :editable => editable %>
+        </tr>
 
-		<% if(current.data.mtype == "ensemble")
-			current.children.each do |c|
-				loop(c, depth + 1, current.data, root, editable)
-			end
-		end %>
+        <% if(current.data.mtype == "ensemble")
+            current.children.each do |c|
+                loop(c, depth + 1, current.data, root, editable)
+            end
+        end %>
 
 <% end %>
 
@@ -23,4 +23,4 @@
 
 
 
-	
+    

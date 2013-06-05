@@ -8,133 +8,134 @@
 <br>
 
 <table> 
-	<tr> 
-	 	<th>  </th> 
-	 	<th> Crédits </th> 
-	 	<th> Quadri. </th> 
-	 	<th> H. Cours</th> 
-	 	<th> H. TP </th> 
-	 	<th> Langue </th> 
-	 	<th> Q1 </th> 
-	 	<th> Q2 </th> 
-	 	<th> Q3 </th> 
-	 	<th> Q4 </th> 
-	 	<th> Q5 </th> 
-	 	<th> Q6 </th> 
-	 </tr> 
+    
+    <tr> 
+        <th>  </th> 
+        <th> Crédits </th> 
+        <th> Quadri. </th> 
+        <th> H. Cours</th> 
+        <th> H. TP </th> 
+        <th> Langue </th> 
+        <th> Q1 </th> 
+        <th> Q2 </th> 
+        <th> Q3 </th> 
+        <th> Q4 </th> 
+        <th> Q5 </th> 
+        <th> Q6 </th> 
+     </tr> 
 
-	<tr> 
-		
-		<td> </td>
-		<td> </td>
-		<td> </td>
-		<td> </td>
-		<td> </td>
-		<td> </td>
+    <tr> 
+        
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
 
-		<td> 
-		 	<% if @sum_q1 != nil %>
-		 		<% if @sum_q1[0] == @sum_q1[1] %>
-		 			<%= @sum_q1[0] %>
-		 		<% else %>
-		 			[<%= @sum_q1[0] %>, <%= @sum_q1[1] %>]
-		 		<% end %>
-		 	<% end %>
-		</td>
+        <td> 
+            <% if @sum_q1 != nil %>
+                <% if @sum_q1[0] == @sum_q1[1] %>
+                    <%= @sum_q1[0] %>
+                <% else %>
+                    [<%= @sum_q1[0] %>, <%= @sum_q1[1] %>]
+                <% end %>
+            <% end %>
+        </td>
 
-		<td>
-		 	<% if @sum_q2 != nil %>
-		 		<% if @sum_q2[0] == @sum_q2[1] %>
-		 			<%= @sum_q2[0] %>
-		 		<% else %>
-		 			[<%= @sum_q2[0] %>, <%= @sum_q2[1] %>]
-		 		<% end %>
-		 	<% end %>
-		</td>
+        <td>
+            <% if @sum_q2 != nil %>
+                <% if @sum_q2[0] == @sum_q2[1] %>
+                    <%= @sum_q2[0] %>
+                <% else %>
+                    [<%= @sum_q2[0] %>, <%= @sum_q2[1] %>]
+                <% end %>
+            <% end %>
+        </td>
 
-		<td> 
-		 	<% if @sum_q3 != nil %>
-		 		<% if @sum_q3[0] == @sum_q3[1] %>
-		 			<%= @sum_q3[0] %>
-		 		<% else %>
-		 			[<%= @sum_q3[0] %>, <%= @sum_q3[1] %>]
-			 	<% end %>
-		 	<% end %>
-		</td>
+        <td> 
+            <% if @sum_q3 != nil %>
+                <% if @sum_q3[0] == @sum_q3[1] %>
+                    <%= @sum_q3[0] %>
+                <% else %>
+                    [<%= @sum_q3[0] %>, <%= @sum_q3[1] %>]
+                <% end %>
+            <% end %>
+        </td>
 
-		<td> 
-		 	<% if @sum_q4 != nil %>
-		 		<% if @sum_q4[0] == @sum_q4[1] %>
-		 			<%= @sum_q4[0] %>
-		 		<% else %>
-		 			[<%= @sum_q4[0] %>, <%= @sum_q4[1] %>]
-			 	<% end %>
-		 	<% end %>
-		</td>
+        <td> 
+            <% if @sum_q4 != nil %>
+                <% if @sum_q4[0] == @sum_q4[1] %>
+                    <%= @sum_q4[0] %>
+                <% else %>
+                    [<%= @sum_q4[0] %>, <%= @sum_q4[1] %>]
+                <% end %>
+            <% end %>
+        </td>
 
-		<td>
-		 	<% if @sum_q5 != nil %>
-		 		<% if @sum_q5[0] == @sum_q5[1] %>
-		 			<%= @sum_q5[0] %>
-		 		<% else %>
-		 			[<%= @sum_q5[0] %>, <%= @sum_q5[1] %>]
-		 		<% end %>
-		 	<% end %>
-		</td>
+        <td>
+            <% if @sum_q5 != nil %>
+                <% if @sum_q5[0] == @sum_q5[1] %>
+                    <%= @sum_q5[0] %>
+                <% else %>
+                    [<%= @sum_q5[0] %>, <%= @sum_q5[1] %>]
+                <% end %>
+            <% end %>
+        </td>
 
-		<td>
-		 	<% if @sum_q6 != nil %>
-		 		<% if @sum_q6[0] == @sum_q6[1] %>
-		 			<%= @sum_q6[0] %>
-		 		<% else %>
-		 			[<%= @sum_q6[0] %>, <%= @sum_q6[1] %>]
-		 		<% end %>
-		 	<% end %>
-		</td>
+        <td>
+            <% if @sum_q6 != nil %>
+                <% if @sum_q6[0] == @sum_q6[1] %>
+                    <%= @sum_q6[0] %>
+                <% else %>
+                    [<%= @sum_q6[0] %>, <%= @sum_q6[1] %>]
+                <% end %>
+            <% end %>
+        </td>
 
-	 </tr> 
-	
-	<% def loop(current, depth, parent, mandatory) %>
+     </tr> 
+    
+    <% def loop(current, depth, parent, mandatory) %>
 
-		<% scc = SelectionConstraintsChecker.new(current, $tree_root) %>
+        <% scc = SelectionConstraintsChecker.new(current, $tree_root) %>
 
-		<% if(!scc.check_mandatory_content()) %>
-			<tr class="error">
-				<%= render 'line', :depth => depth, :parent => parent, :node => current, :mandatory => mandatory %>
-			</tr>
-		<% elsif current.is_selected? %>
-			<tr class="selected">
-				<%= render 'line', :depth => depth, :parent => parent, :node => current, :mandatory => mandatory %>
-			</tr>
-		<% else %>
-			<tr class="deselected">
-				<%= render 'line', :depth => depth, :parent => parent, :node => current, :mandatory => mandatory %>
-			</tr>
-		<% end %>
+        <% if(!scc.check_mandatory_content()) %>
+            <tr class="error">
+                <%= render 'line', :depth => depth, :parent => parent, :node => current, :mandatory => mandatory %>
+            </tr>
+        <% elsif current.is_selected? %>
+            <tr class="selected">
+                <%= render 'line', :depth => depth, :parent => parent, :node => current, :mandatory => mandatory %>
+            </tr>
+        <% else %>
+            <tr class="deselected">
+                <%= render 'line', :depth => depth, :parent => parent, :node => current, :mandatory => mandatory %>
+            </tr>
+        <% end %>
 
-		<% if(current.data.mtype == "ensemble")
-			current.children.each do |c|
-				b = false
-				current.data.get_content_array().each do |s, a, o|
-					if(c.data.sigles_array().index(s) != nil)	
-						b = o
-					end		
-				end
-				m = mandatory & b
-				loop(c, depth + 1, current.data, m)
-			end
-		end %>
+        <% if(current.data.mtype == "ensemble")
+            current.children.each do |c|
+                b = false
+                current.data.get_content_array().each do |s, a, o|
+                    if(c.data.sigles_array().index(s) != nil)   
+                        b = o
+                    end     
+                end
+                m = mandatory & b
+                loop(c, depth + 1, current.data, m)
+            end
+        end %>
 
-	<% end %>
+    <% end %>
 
-	<% selected = [] %>
-	<%= form_tag(:action => :check, :controller => "compositors", :selected => selected) do %>
-		<% loop($tree_root, 0, nil, true) %>
-		<%= submit_tag 'check', :id => "button", :class => "big" %>
+    <% selected = [] %>
+    <%= form_tag(:action => :check, :controller => "compositors", :selected => selected) do %>
+        <% loop($tree_root, 0, nil, true) %>
+        <%= submit_tag 'check', :id => "button", :class => "big" %>
 
-		<%= render "shared/help", :content => "compositors/help_messages/check_button_info", :size => "20x20" %> 
+        <%= render "shared/help", :content => "compositors/help_messages/check_button_info", :size => "20x20" %> 
 
-	<% end %>
+    <% end %>
 
 </table>
 

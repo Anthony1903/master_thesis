@@ -9,12 +9,12 @@
 
 <ul class="cours list">
   <% @cours_objects.each do |cours| %>
-  	<li>
-   		<%= link_to Sigle.find_by_pmodule_id(cours.id).sigle, cours_object_path(cours.id) %>,
- 		<div id="info">
-   			<%= cours.dptCharge %>,<%= cours.intitule %>
-   		</div>
-  	</li>
+    <li>
+        <%= link_to Sigle.find_by_pmodule_id(cours.id).sigle, cours_object_path(cours.id) %>,
+        <div id="info">
+            <%= cours.dptCharge %>,<%= cours.intitule %>
+        </div>
+    </li>
   <% end %>
 </ul>
 
