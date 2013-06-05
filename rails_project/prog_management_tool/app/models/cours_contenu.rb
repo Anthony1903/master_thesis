@@ -11,9 +11,9 @@ class CoursContenu < ActiveRecord::Base
 
     validates_inclusion_of :quadri,
                            :allow_nil => true,
-    			 	 	   :in => 1..2,	
+                           :in => 1..2,	
                            :message => "Les quadrimestres valables sont 1, 2 ou aucun spécifié"
-    			 	 	 
+  
     validates :pmodule, :presence => true
 
     validates_numericality_of :dureeCours, 

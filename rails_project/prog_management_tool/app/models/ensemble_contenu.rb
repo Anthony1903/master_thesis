@@ -7,10 +7,10 @@ class EnsembleContenu < ActiveRecord::Base
     belongs_to :pmodule
 
     belongs_to :contenu,
-    		   :class_name => "Pmodule"
+               :class_name => "Pmodule"
 
     validates_inclusion_of :annee,
-            			   :in => %w(1 2 3 1-2 2-3 1-3 1-2-3),
+                           :in => %w(1 2 3 1-2 2-3 1-3 1-2-3),
                            :message => "Le champ 'année' doit obligatoirement contenir une des valeurs suivantes : '1', '2', '3', '1-2', '2-3', '1-3', '1-2-3'"
 
     validates_inclusion_of :obligatoire,
