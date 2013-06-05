@@ -24,8 +24,8 @@ class Pmodule < ActiveRecord::Base
     	has_many :sigle,         :dependent => :destroy
 
     	validates_inclusion_of :mtype,
-    					   :in => %w(cours ensemble),
-               :message => "Le type d'un module ne peut être que 'cours' ou 'ensemble'"
+    			             		   :in => %w(cours ensemble),
+                             :message => "Le type d'un module ne peut être que 'cours' ou 'ensemble'"
 
     validates_inclusion_of :langue,
                            :in => %w(fr angl fr-angl),
