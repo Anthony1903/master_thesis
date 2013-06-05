@@ -1,0 +1,23 @@
+<div id="search">
+
+	<%= form_tag(:action => :restricted_index, :controller => ctrl) do %>
+
+		    <%=select_tag 'critere' , 
+		    		options_for_select(%w{sigle intitule creditsMax creditsMin langue dptCharge commentaire validite}, :selected => @critere),
+		    		:class => "select"
+		    %> 
+		    
+		    <%=select_tag 'status' , 
+		    		options_for_select(%w{tous actuel archive future}, :selected => @status),
+		    		:class => "select"
+		    %>
+
+		    <br>
+
+		    <%= text_field_tag 'valeur', @valeur.to_s, :size => 32, :maxlength => 64, :class => "text" %>
+
+		  	<div><% submit_tag 'Rechercher' %></div>
+		  	
+	<% end %>
+
+</div>

@@ -1,0 +1,52 @@
+
+<% if(@new!=nil && @new.mtype == "cours")%>
+
+	<div id="column1">
+		<h3> Version actuelle </h3>
+		<% @cours_object = @old %>
+		<%= form_for(@cours_object, :url => url_for(:controller => "import_managers", :action => "feedback")) do |f| %>
+		    <%= render 'cours_objects/fields', :f => f %>		 
+		<% end %>
+		<div class="actions">
+	     	<%= button_to "Conserver", {:controller => "import_managers", :action => "feedback", :keep => true}, :id => "button" %>
+	    </div> 
+	</div>
+
+	<div id="column2">
+		<h3> Nouvelles version </h3>
+		<% @cours_object = @new %>
+		<%= form_for(@cours_object, :url => url_for(:controller => "import_managers", :action => "feedback")) do |f| %>
+		    <%= render 'cours_objects/fields', :f => f %>		 
+		    <div class="actions">
+	    	  	<%= f.submit "Modifier", :id => "button" %>
+	        </div> 
+		<% end %>
+	</div>
+
+<% end %>
+
+<% if(@new!=nil && @new.mtype == "ensemble")%>
+
+	<div id="column1">
+		<h3> Version actuelle </h3>
+		<% @ensemble_object = @old %>
+		<%= form_for(@ensemble_object, :url => url_for(:controller => "import_managers", :action => "feedback")) do |f| %>
+		    <%= render 'ensemble_objects/fields', :f => f %>		  
+		<% end %>
+		<div class="actions">
+    	  	<%= button_to "Conserver", {:controller => "import_managers", :action => "feedback", :keep => true}, :id => "button" %>
+	    </div>
+	</div>
+
+	<div id="column2">
+		<h3> Nouvelles version </h3>
+		<% @ensemble_object = @new %>
+		<%= form_for(@ensemble_object, :url => url_for(:controller => "import_managers", :action => "feedback")) do |f| %>
+		    <%= render 'ensemble_objects/fields', :f => f %>		  
+			<div class="actions">
+		    	<%= f.submit "Modifier", :id => "button" %>
+		    </div>
+		<% end %>
+	</div>
+
+<% end %>

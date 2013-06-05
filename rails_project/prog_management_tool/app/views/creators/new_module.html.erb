@@ -1,0 +1,78 @@
+
+<%= render 'ensemble_objects/context_menu' %>
+
+<%= render 'shared/report_messages', :report => @e_report %>
+<%= render 'shared/report_messages', :report => @c_report %>
+
+<% if @is_root == true %> 
+ 	<p> Le sigle spécifié ne correspond à aucun module présent dans la base de données, 
+ 		veuillez créer l'ensemble qui servira de racine à la version éditée </p>
+<% else %> 
+ 	<p> Ajout d'un module à l'ensemble <%= @parent %> </p>
+<% end %> 
+
+
+<table class="center">
+
+	<td class="spaced">
+		<p> <b> Créer un nouvel ensemble </b> </p>
+		<% @content_restriction = true %>
+
+		<%= form_for(@ensemble_object, :url => url_for(:controller => 'creators', :action => 'create', :type => "new", :parent => @parent)) do |f| %>
+			
+			<% if @is_root == nil %>
+				<%= label_tag :année %> <%= select_tag 'annee', options_for_select(%w{1 2 3 1-2 2-3 1-2-3}) %>
+				<%= select_tag 'obligatoire' , options_for_select(%w{obligatoire optionnel}) %> <br>
+		    <% end %>
+			<%= render 'ensemble_objects/fields', :f => f %>
+		  <div class="actions">
+		    <%= f.submit "Ajouter", :id => "button" %>
+		  </div>
+
+		<% end %>
+	</td>
+
+	<td class="spaced">
+		
+		<% if @is_root == nil %>
+			<p> <b> Créer un nouveau cours </b> </p>
+			<% @content_restriction = true %>
+
+			<%= form_for(@cours_object, :url => url_for(:controller => 'creators', :action => 'create', :type => "new", :parent => @parent)) do |f| %>
+				<% if @is_root == nil %>
+					<%= label_tag :année %> <%= select_tag 'annee', options_for_select(%w{1 2 3 1-2 2-3 1-2-3}) %>
+					<%= select_tag 'obligatoire' , options_for_select(%w{obligatoire optionnel}) %> <br>
+			    <% end %>
+				<%= render 'cours_objects/fields', :f => f %>
+			  <div class="actions">
+			    <%= f.submit "Ajouter", :id => "button" %>
+			  </div>
+
+			<% end %>
+		<% end %>
+	</td>
+	
+	<td class="spaced">
+		<% if @is_root == nil %>
+			<p> <b> Ajouter un module existant</b> </p>
+			<%= form_for(@ensemble_object, :url => url_for(:controller => 'creators', :action => 'create', :type => "existing", :parent => @parent)) do |f| %>
+				
+				<%= label_tag :année %> <%= select_tag 'annee', options_for_select(%w{1 2 3 1-2 2-3 1-2-3}) %>
+				<%= select_tag 'obligatoire' , options_for_select(%w{obligatoire optionnel}) %> <br>
+				<%= label_tag :sigle %> <%= text_field_tag 'sigle', @sigle %> <br>
+			  
+			  <div class="actions">
+			    <%= f.submit "Ajouter", :id => "button" %>
+			  </div>
+
+			<% end %>
+		<% end %>
+	</td>
+
+</table>
+
+<% if @is_root == true %> 
+	<%= button_to 'Retour', '/creator', :id => "button" %> 
+<% else %>
+	<%= button_to 'Retour', '/creator/show', :id => "button" %> 
+<% end %>

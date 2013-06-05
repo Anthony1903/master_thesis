@@ -1,0 +1,50 @@
+ <table>
+
+   <div class="field">
+    <tr>
+      <td> <%= f.label :credits %> : </td>
+      <td> <%= f.text_field :creditsMax %> 
+           <%= render "shared/help", :content => "cours_objects/help_messages/credits_info", :size => "20x20" %> 
+      </td>
+    </tr>
+  </div>
+
+  <div class="field">
+    <tr>
+      <td> <%= f.label :dureeCours %> : </td>
+      <td> <%= f.text_field :dureeCours %> 
+           <%= render "shared/help", :content => "cours_objects/help_messages/dureeCours_info", :size => "20x20" %> 
+      </td>
+    </tr>
+  </div>
+
+  <div class="field">
+    <tr>
+      <td> <%= f.label :dureeTP %> : </td>
+      <td> <%= f.text_field :dureeTP %>  
+           <%= render "shared/help", :content => "cours_objects/help_messages/dureeTP_info", :size => "20x20" %> 
+      </td>
+    </tr>
+  </div>
+
+  <div class="field">
+    <tr>
+      <td> (<%= f.label :professeur %>): </td>
+      <td> <%= f.text_field :professeur %>  
+           <%= render "shared/help", :content => "cours_objects/help_messages/professeur_info", :size => "20x20" %> 
+      </td>
+    </tr>
+  </div>
+
+  <div class="field">
+    <tr>
+      <td> <%= f.label :quadri %>: </td>
+      <td> <%= f.select(:quadri,%w{1 2}) %> 
+           <%= render "shared/help", :content => "cours_objects/help_messages/quadri_info", :size => "20x20" %> 
+      </td>
+    </tr>
+  </div>
+
+  <%= render 'pmodules/fields', :f => f %>
+
+</table>

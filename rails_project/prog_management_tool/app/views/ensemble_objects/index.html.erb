@@ -1,0 +1,25 @@
+
+<%= render 'context_menu' %>
+
+<%= render "shared/help", :content => "ensemble_objects/help_messages/index_info", :size => "30x30" %> 
+
+<%= render "shared/search_tool", :ctrl => :ensemble_objects %>
+
+<%= will_paginate %>
+
+<ul class="ensemble list">
+
+  <% @ensemble_objects.each do |ensemble| %>
+	
+	<li>
+ 		<%= link_to Sigle.find_by_pmodule_id(ensemble.id).sigle, ensemble_object_path(ensemble.id) %>
+ 		<div id="info">
+   			<%= ensemble.dptCharge %>, <%= ensemble.intitule %>
+   		</div>
+	</li>
+  
+  <% end %>
+
+</ul>
+
+<%= will_paginate %>

@@ -1,0 +1,34 @@
+
+Sigle : <%= @diplome.sigle %>
+<%= render "shared/help", :content => "diplome_objects/help_messages/sigle_info", :size => "20x20" %> </br>
+
+Racine: <%= @diplome.root_sigle %>
+<%= render "shared/help", :content => "diplome_objects/help_messages/root_info", :size => "20x20" %> </br>
+
+Cycle : <%= @diplome.cycle %>
+<%= render "shared/help", :content => "diplome_objects/help_messages/cycle_info", :size => "20x20" %> </br>
+
+Faculté en charge : <%= @diplome.facSigle %>
+<%= render "shared/help", :content => "diplome_objects/help_messages/fac_info", :size => "20x20" %> </br>
+
+
+
+
+
+<table> 
+	<tr>
+		<th> 
+			<%= button_to "Modifier", 
+				edit_diplome_object_path(@diplome.id),
+				:method=>:get, 
+				:id => "button" %>
+		</th>
+		<th> 
+			<%= button_to "Supprimer",
+				diplome_object_path(@diplome.id), 
+				:method=>:delete, 
+				:class=>:destroy,
+				:confirm=>"Etes-vous certain de vouloir supprimer ce diplome ?", 
+				:id => "button" %>
+		</th>
+</table>

@@ -1,0 +1,33 @@
+<% target_sigle = Sigle.find_by_sigle(@contrainte_object.target) %>
+
+Cible : 
+	<% if(target_sigle!=nil) %>
+		<%= link_to @contrainte_object.target, cours_object_path(target_sigle.pmodule_id) %> 
+	<% else %>
+		*
+	<% end %>
+<%= render "shared/help", :content => "contrainte_objects/help_messages/target_info", :size => "20x20" %> </br>
+
+Condition : <%= @contrainte_object.cond %>
+<%= render "shared/help", :content => "contrainte_objects/help_messages/cond_info", :size => "20x20" %> </br>
+
+Effet : <%= @contrainte_object.effet %> 
+<%= render "shared/help", :content => "contrainte_objects/help_messages/effect_info", :size => "20x20" %> </br>
+
+<table> 
+	<tr>
+		<th> 
+			<%= button_to "Modifier", 
+			edit_contrainte_object_path(@contrainte_object.id),
+			:method=>:get, 
+			:id => "button" %>	
+		</th>
+		<th> 
+			<%= button_to "Supprimer", 
+				contrainte_object_path(@contrainte_object.id), 
+				:method=>:delete, 
+				:class=>:destroy,
+				:confirm=>"Etes-vous certain de vouloir supprimer cette contrainte ?", 
+				:id => "button" %>
+		</th>
+</table>

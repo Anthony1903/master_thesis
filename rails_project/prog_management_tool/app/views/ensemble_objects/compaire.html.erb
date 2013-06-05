@@ -1,0 +1,41 @@
+
+<%= render 'context_menu' %>
+
+<%= render "shared/help", :content => "ensemble_objects/help_messages/compaire_info", :size => "30x30" %> 
+
+<% 
+	if(@tree_root != nil)
+		s = @tree_root.data.sigles_array[0]
+	else
+		s = ""
+	end 
+
+	if(@tree_root2 != nil)
+		s2 = @tree_root2.data.sigles_array[0]
+	else
+		s2 = ""
+	end
+%>
+
+<%= form_tag(:action => :compaire, :controller => "ensemble_objects") do %>
+	<%= label_tag "Sigle 1 " %> <%= text_field_tag 'sigle', s, :size => 35, :class => "text" %> <br>
+	<%= label_tag "Sigle 2 " %> <%= text_field_tag 'sigle2', s2, :size => 35, :class => "text" %> <br>
+    <%= submit_tag "Charger", :id => "button" %>
+<% end %>
+
+<p>
+	<% if @tree_root != nil %>
+		<div id="treeview">
+    		<%= render 'shared/explorable_ensemble' %>
+		</div>
+    <% end %>
+</p>
+
+<p>
+	<% if @tree_root2 != nil %>
+		<% @tree_root = @tree_root2 %>
+		<div id="treeview2">
+    		<%= render 'shared/explorable_ensemble' %>
+		</div>
+    <% end %>
+</p>

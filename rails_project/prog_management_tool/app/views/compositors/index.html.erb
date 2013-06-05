@@ -1,0 +1,17 @@
+<%= render 'context_menu' %>
+
+Veillez choisir un diplôme pour pouvoir commencer la composition 
+<%= render "shared/help", :content => "compositors/help_messages/index_info", :size => "30x30" %> 
+
+<ul>
+<% DiplomeObject.load_all.each do |d|%>
+	<li>	
+
+ 		<%= link_to d.sigle, :action => :show, :controller => "compositors", :sigle => d.root_sigle %>
+		<div id="info"> 
+			<%= d.cycle %>, <%= d.facSigle %>
+		</div> 
+	</li>
+<% end %>
+</ul>
+

@@ -1,0 +1,84 @@
+*******************************************************************************
+Popolo Cagnisi Anthony 			 	 		     05/06/2013
+			
+		   COMMENTAIRES PROVENANT DE LA VALIDATION
+		   ET ADAPTATIONS APPORTEES EN CONSEQUENCE
+
+*******************************************************************************
+
+-------------------------------------------------------------------------------
+				DESCRIPTION
+-------------------------------------------------------------------------------
+
+Les commentaires qui suivent proviennent des utilisateurs (membres de la 
+commission des programmes d'études en sciences informatiques). Ceux-ci ont été 
+faits lors du processus de validation conduit par le scénario.
+
+Un "+" devant un commentaire signifie qu'une solution a été apportée, dans la 
+dernière version, pour résoudre le problème soulevé par le commentaire.
+
+Un "-" devant un commentaire signifie qu'aucune mesure n'a été prise à ce jour,
+ou qu'aucune solution satifaisante n'a été trouvée.
+
+-------------------------------------------------------------------------------
+				 LISTING
+-------------------------------------------------------------------------------
+
+GESTIONNAIRE D'IMPORT
+	+ Avant l'import, fournir une brève description des fichiers requis.
+	+ Lors de l'import, préciser l'intitulé du module sujet à erreur.
+	+ Lors de l'import, proposer des suggestions de résolution de problème 
+	  lorsqu'un module inconnu est chargé.
+	+ En fin d'import, donner plus de détails sur les rapports affichés, sur 
+	  ce qu'ils sont. 
+
+EDITION DE PROGRAMME
+	+ Renommer "Création de programme" en "Edition de programme" qui 
+	  convient mieux.
+ 	+ Ajouter des commentaires en ce qui concerne le champ "validité", son 
+	  utilité n'est pas claire pour l'utilisateur.
+	+ Ajouter des commentaires en ce qui concerne les boutons, leur utilité
+	  n'est pas claire pour l'utilisateur.
+	+ Mieux indiquer la différence entre les cours et les ensembles 
+	  (utiliser des couleurs par exemple).
+	- Pouvoir "déplier" la structure sur demande.
+	- Eviter de replacer le focus en haut de la page à chaque modification 
+	  du programme.
+	- Afficher en couleur, sur la version actuelle, les modules qui ont été 
+	  modifiés dans la version éditable.
+
+COMPARAISON DE PROGRAMMES
+	- Pouvoir facilement discerner les différences entre les structure
+	  affichées (utiliser des couleurs par exemple).
+
+COMPOSITION DE PROGRAMMES
+	- Mieux indiquer la différence entre les cours et les ensembles 
+	  (utiliser des couleurs par exemple).
+	- Pouvoir "déplier" la structure sur demande.
+
+PRESENTATION DE MODULES
+	+ Il serait utile de présenter une structure en arbre "dépliable" 
+	  (comme pour la comparaison de programmes).
+	+ Il serait utile de présenter un lien vers l'outil d'édition de 
+	  programmes préconfiguré pour le module présenté.
+	- Utiliser des couleurs dans la liste de modules pour indiquer ceux qui 
+	  ont eu des problèmes lors de l'import, à la place de la liste de 
+	  rapports en fin d’import.
+
+RAPPORTS
+	- L'utilisateur fonctionne par intitulé et pas seulement par sigle, il 
+	  faudrait donc faire référence à l'intitulé plus souvent.
+	- Rendre les messages d'erreur plus explicites, même si ils doivent 
+	  faire plusieurs lignes.
+
+AUTRES
+	+ Ajouter des descriptions sur chaque page.
+	+ Ajouter des explications concernant l'utilisation du style "gras", 
+	  ainsi que des couleurs.
+	- Ajouter un outil de recherche à chaque fois que l'application requière 
+	  un sigle (par exemple, dans la page "index" de creators_controller). 
+	- Afficher clairement lorsqu'il faut attendre (afficher une horloge par 
+   	  exemple).
+	- Concernant les contraintes légales, pouvoir en créer, en modifier ou 
+	  supprimer directement depuis l'interface.
+

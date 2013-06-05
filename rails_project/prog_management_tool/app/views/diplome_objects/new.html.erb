@@ -1,0 +1,14 @@
+
+<%= render 'context_menu' %>
+
+<%= form_for(@diplome) do |f| %>
+  <%= render 'shared/report_messages', :report => @report %>
+  <%= render 'fields', :f => f %>
+
+  <div class="actions">
+    <%= f.submit "Créer", :id => "button" %>
+  </div>
+  
+<% end %>
+
+<%= button_to 'Retour', '/diplome_objects/index', :id => "button" %> 

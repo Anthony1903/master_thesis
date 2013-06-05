@@ -1,0 +1,76 @@
+
+<% def loop(current, depth, parent) %>
+		
+	<li> 
+		<a>
+			<% mod = current.data %>
+
+			<% if mod != nil %>
+
+				<%
+					mand = false
+					if(parent!=nil)
+						parent.data.get_content_array.each do |s, a, o|
+							if(mod.sigles_array.index(s) != nil)
+								if(o)
+									mand = true
+								end
+							end
+						end
+					else
+						mand = true						
+					end
+				%>
+
+				<% if(mand) %>
+					<b>
+						<%= mod.sigles_array[0] %>
+					</b>
+				<% else %>
+						<%= mod.sigles_array[0] %>
+				<% end %>
+
+				<div id="info">
+
+					<%= mod.intitule %>
+
+					<% if mod.mtype == "ensemble" %>
+					
+							[<%= mod.creditsMin %>, <%= mod.creditsMax %>]
+					
+					<%  else %>
+							<% if mod.quadri.to_s == "" then q = "-" else q = mod.quadri end %>
+
+							[<%= mod.creditsMax %>], q: <%= q %> 	
+					
+					<% end %>
+
+				</div>
+
+			<% end %>
+
+		</a> 
+
+		<% 
+			if(current.data.mtype == "ensemble")
+				current.children.each do |c|
+			%> 
+				<ul>
+					<% 
+						loop(c, depth + 1, current)
+					%>
+				</ul>
+			<% 
+				end
+			end 
+		%>
+
+	</li>
+
+<% end %>
+
+<ul>
+	<% loop(@tree_root, 0, nil) %>
+</ul>
+
+	

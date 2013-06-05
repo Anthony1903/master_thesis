@@ -1,0 +1,52 @@
+
+<%= render 'ensemble_objects/context_menu' %>
+
+
+<% if @ensemble_object != nil %>
+
+    <%= form_for(@ensemble_object, :url => url_for(:controller => 'creators', :action => 'update', :old_sigle => @sigle)) do |f| %>
+      <%= render 'shared/report_messages', :report => @report %>
+    	
+      <% @content_restriction = true %>			
+      <%= render 'ensemble_objects/fields', :f => f %>
+
+      <% if @ensemble_object.get_content_array().size > 0 %>
+      	Contenu : <br>
+      <% end %>
+      <% @ensemble_object.get_content_array().each do |s, a, o| %>
+      	
+      		- <%= s %> : 
+
+      		<%= label_tag :année %> <%= select_tag "#{s}_annee", options_for_select(%w{1 2 3 1-2 2-3 1-2-3}, a) %>
+    		
+    		<% if o then default = "obligatoire" else default = "optionnel" end %>
+    		<%= select_tag "#{s}_obligatoire" , options_for_select(%w{obligatoire optionnel}, default) %> <br>
+
+      <% end %> 
+
+      <div class="actions">
+        <%= f.submit "Modifier", :id => "button" %>
+      </div>
+      
+    <% end %>
+    
+<% end %>
+
+
+<% if @cours_object != nil %>
+
+    <%= form_for(@cours_object, :url => url_for(:controller => 'creators', :action => 'update', :old_sigle => @sigle)) do |f| %>
+      <%= render 'shared/report_messages', :report => @report %>
+      
+      <% @content_restriction = true %>     
+      <%= render 'cours_objects/fields', :f => f %>
+
+      <div class="actions">
+        <%= f.submit "Modifier", :id => "button" %>
+      </div>
+      
+    <% end %>
+
+<% end %>
+
+<%= button_to 'Retour', '/creator/show', :id => "button" %> 

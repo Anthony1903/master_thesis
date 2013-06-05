@@ -1,0 +1,15 @@
+<div class="alert alert-error">
+
+   <% if report!=nil && !report.empty? %>
+    
+    <div id="error_explanation">
+  
+      <% report.list.each do |msg| %>
+		<li><%= msg %></li>
+      <% end %>
+  
+    </div>
+  
+  <% end %>
+
+</div>

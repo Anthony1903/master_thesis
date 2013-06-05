@@ -1,0 +1,86 @@
+
+<% if @report != nil && !@report.empty? %>
+	<div id="report">
+
+		<% if(@sigle_title == nil)%>
+			<b> Rapport </b> <br> 
+		<% else %> 
+
+			<% if Sigle.find_by_sigle(@sigle_title) != nil %>
+
+				<% if Pmodule.find(Sigle.find_by_sigle(@sigle_title).pmodule_id).mtype == "cours" %>
+					<%= link_to @sigle_title, cours_object_path(Sigle.find_by_sigle(@sigle_title).pmodule_id) %>
+				<% else %>
+					<%= link_to @sigle_title, ensemble_object_path(Sigle.find_by_sigle(@sigle_title).pmodule_id) %>
+				<% end %> 
+
+			<% else %> 
+
+				<b> <%= @sigle_title %> </b> <br>  
+
+			<% end %> 
+			
+		<% end %> 
+
+		<ul>
+			<% if(@report.get_category("update") != nil)%>
+				<li>
+					<div class="update">
+						<h5> Mise à jour </h5>
+						<% @report.get_category("update").each do |line| %> 
+							<%= line %>  <br>
+						<% end %> 
+					</div>
+				</li>
+				<% @report.remove_category("update") %>
+			<% end %>
+
+			<% if(@report.get_category("strict error") != nil)%>
+				<li>
+					<div class="strict_error">
+						<h5> Problèmes devant obligatoirement être résolus </h5>
+						<% @report.get_category("strict error").each do |line| %> 
+							<%= line %>  <br>
+						<% end %> 
+					</div>
+				</li>
+				<% @report.remove_category("strict error") %>
+			<% end %>
+
+			<% if(@report.get_category("error") != nil)%>
+				<li>
+					<div class="error">	
+						<h5> Erreurs survenues pouvant être ignorées </h5>
+						<% @report.get_category("error").each do |line| %> 
+							<%= line %> <br>
+						<% end %> 
+					</div>
+				</li>
+				<% @report.remove_category("error") %>
+			<% end %>
+
+			<% if(@report.get_category("warning") != nil)%>
+				<li>
+					<div class="warning">
+						<h5> Avertissements </h5>
+						<% @report.get_category("warning").each do |line| %> 
+							<%= line %>  <br>
+						<% end %> 
+					</div>
+				</li>
+				<% @report.remove_category("warning") %>
+			<% end %>
+
+			<li>
+				<% cats = @report.categories?() %>
+				<% cats.each do |cat| %>
+					<h5> <%= cat %> </h5>
+					<% @report.get_category(cat).each do |line| %> 
+						<%= line %>  <br>
+					<% end %> 
+				<% end %> 
+			</li>
+
+		</ul>
+	</div>
+<% end %> 

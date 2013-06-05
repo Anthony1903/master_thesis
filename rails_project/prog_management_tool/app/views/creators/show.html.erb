@@ -1,0 +1,86 @@
+
+<%= render 'ensemble_objects/context_menu' %>
+
+<% @report = $global_report%> 
+<% @sigle_title = "Rapport global d'erreur" %> 
+<%= render "shared/help", :content => "creators/help_messages/globalReport_info", :size => "20x20" %> <br>
+<%= render 'shared/report'%>
+
+<% if $root != nil %>
+
+	<table class="center">
+		<td class = "spaced"> 
+
+			<table class="restricted"> 
+				<tr class="restricted"> 
+				 	<th class="restricted">  </th> 
+				 	<th class="restricted"> Cr. </th> 
+				 	<th class="restricted"> Vol. 1 </th> 
+				 	<th class="restricted"> Vol. 2 </th> 
+				 	<th class="restricted"> Q. </th> 
+				 	<th class="restricted">  </th> 
+				 </tr> 
+
+				Version actuelle 
+				<%= render "shared/help", :content => "creators/help_messages/versionActuelle_info", :size => "20x20" %> <br>
+				<%= render "side", :root => $info_tree_root, :editable => false %> <br>
+			</table>
+
+		</td>
+
+		<td class = "spaced"> 
+
+<% end %>
+
+			<table class="restricted"> 
+				<tr class="restricted"> 
+				 	<th class="restricted">  </th> 
+				 	<th class="restricted"> Cr. </th> 
+				 	<th class="restricted"> Vol. 1 </th> 
+				 	<th class="restricted"> Vol. 2 </th> 
+				 	<th class="restricted"> Q. </th> 
+				 	<th class="restricted">  </th> 
+				 	<th class="restricted">  </th> 
+				 	<th class="restricted">  </th> 
+				 </tr> 
+
+				Version éditable 
+				<%= render "shared/help", :content => "creators/help_messages/versionEditable_info", :size => "20x20" %> <br>
+				<%= render "side", :root => $editable_tree_root, :editable => true %> <br>
+
+			</table>
+
+<% if $root != nil %>
+
+		</td>
+	</table>
+	
+<% end %>
+
+<p>
+	<table class="center">
+		<td class = "spaced"> 
+			<%if($root != nil)%>
+				<%= button_to "Mettre à jour la version actuelle", '/creator/update_all',:id => "button", :class => "big" %> 
+				<%= render "shared/help", :content => "creators/help_messages/updateAll_info", :size => "20x20" %> 
+			<% end %>
+		</td> 
+
+		<td class = "spaced"> 
+			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;			
+			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		
+			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
+			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
+			 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		
+		</td> 
+
+		<td class = "spaced"> 
+			<%= form_tag(:action => :save_all, :controller => "creators") do %>
+			    <%= submit_tag "Sauvegarder comme version future", :id => "button", :class => "big" %> <br>
+				<%= label_tag :validité %> <%= text_field_tag 'validite', Date.today.year + 1 %> 
+			<% end %>
+			<br>
+			<%= render "shared/help", :content => "creators/help_messages/saveAll_info", :size => "20x20" %> 
+		</td> 
+	</table>
+</p>

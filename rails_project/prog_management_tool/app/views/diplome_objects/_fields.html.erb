@@ -1,0 +1,39 @@
+ <table>
+
+  <div class="field">
+    <tr>
+      <td> <%= f.label :sigle %> </td>
+      <td> <%= f.text_field :sigle %> 
+           <%= render "shared/help", :content => "diplome_objects/help_messages/sigle_info", :size => "20x20" %>
+      </td>
+    </tr>
+  </div>
+
+  <div class="field">
+    <tr>
+      <td> <%= f.label :racine %> </td>
+      <td> <%= f.text_field :root_sigle %> 
+           <%= render "shared/help", :content => "diplome_objects/help_messages/root_info", :size => "20x20" %>
+      </td>
+    </tr>
+  </div>
+
+  <div class="field">
+    <tr>
+      <td> <%= f.label :cycle %> </td>
+      <td> <%= f.select(:cycle,%w{master bac master60 passerelle}) %>  
+           <%= render "shared/help", :content => "diplome_objects/help_messages/cycle_info", :size => "20x20" %>
+      </td>
+    </tr>
+  </div>
+
+  <div class="field">
+    <tr>
+      <td> (<%= f.label :facSigle %>) </td>
+      <td> <%= f.text_field :facSigle %> 
+           <%= render "shared/help", :content => "diplome_objects/help_messages/fac_info", :size => "20x20" %>
+      </td>
+    </tr>
+  </div>
+ 
+ </table>

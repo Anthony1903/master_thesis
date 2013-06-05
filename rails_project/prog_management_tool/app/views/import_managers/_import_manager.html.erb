@@ -1,0 +1,64 @@
+<ul>
+
+	<li>
+		<% if($csv_loader.files_loaded?) %>
+			<%= render "shared/help", :content => "import_managers/help_messages/status_info", :size => "30x30" %>  <br>
+	
+			<% if( $csv_loader.root_intit_abrege != nil ) %>
+
+				Racine sélectionnée  : 
+				<%= $csv_loader.root_intit_abrege %> <br>
+
+				<%= render 'progress_bar' %>
+
+				<%= link_to "Continuer l'import actuel", {:controller => "import_managers", :action => "load_next"}%>  <br>
+				<%= link_to "Réinitialiser l'import actuel", {:controller => "import_managers", :action => "init_stack"}%>  <br>
+
+			<% end %>
+
+		<% else %>
+			<%= render "shared/help", :content => "import_managers/help_messages/index_info", :size => "30x30" %>  <br>
+			<p>
+				Les fichiers n'ont pas encore été chargés en mémoire. 
+			</p>
+		<% end %>
+	</li>  
+
+		<% if($csv_loader.files_loaded?) %>
+
+			<li>
+				<% $csv_loader.roots_info.each do |r| %>
+					<%= link_to ("Importer " + r), {:controller => "import_managers", :action => "load_next", :root_selected => r}%> <br>
+				<% end %>
+
+			</li> 
+		<% else %>
+			
+			<p>
+				Fichiers requis :
+					<li> 
+						<b>"activites.csv"</b> : <br> 
+						Contient l’ensemble des informations relatives à ce qui est appelé des "activités", 
+						ce qui correspond aux modules (cours et ensembles).
+					</li> 
+					<li> 
+						<b>"activites_root.csv" </b> :  <br> 
+						Contient l’ensemble des racines des groupes présents dans "EPL_grp.csv".
+					</li> 
+					<li> 
+						<b>"EPL_grp.csv"</b> :  <br> 
+						Contient l’ensemble des informations permettant de savoir quel groupe contient quelle activité 
+						en ce qui concerne la faculté EPL, ce qui peut être traduit par “quel ensemble contient quel autre ensemble 
+						ou cours”.
+					</li> 
+					<li> 
+						<b>"prof.csv"</b> :  <br> 
+						Contient les informations relatives aux enseignants.
+					</li> 
+			</p>
+			
+			</br>
+
+		<% end %>
+
+</ul>

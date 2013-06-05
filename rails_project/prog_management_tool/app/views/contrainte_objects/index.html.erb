@@ -1,0 +1,42 @@
+
+<%= render 'context_menu' %>
+
+<%= render "shared/help", :content => "contrainte_objects/help_messages/index_info", :size => "30x30" %> 
+
+<%= will_paginate %>
+
+<ul class="contraintes list">
+
+  <% @contrainte_objects.each do |c| %>
+  	<li>
+  		<%= link_to ("Contrainte " + c.id.to_s), contrainte_object_path(c.id) %>,  
+
+  		<% target_sigle_o = Sigle.find_by_pmodule_id(c.pmodule_id) %>
+   		Cible : 
+
+   		<% if target_sigle_o != nil%>
+
+	  		<% target_sigle = target_sigle_o.sigle %>
+	  		<% target_id = target_sigle_o.pmodule_id %>
+
+        <% if Pmodule.find(target_id).mtype == "cours" %>
+	   		  <%= link_to target_sigle, cours_object_path(target_id) %>
+        <% else %>
+          <%= link_to target_sigle, ensemble_object_path(target_id) %>
+        <% end %>
+
+   		<% else %>
+
+   		  *
+
+   		<% end %>
+
+   		 [ <%= c.cond %> => <%= c.effet %> ]
+
+  	</li>
+
+  <% end %>
+
+</ul>
+
+<%= will_paginate %>

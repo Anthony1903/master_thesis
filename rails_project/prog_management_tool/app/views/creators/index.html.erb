@@ -1,0 +1,17 @@
+
+<%= render 'ensemble_objects/context_menu' %>
+
+<%= render "shared/help", :content => "creators/help_messages/index_info", :size => "30x30" %> 
+<p>
+	Entrez un sigle existant pour lancer l'édition depuis un ensemble servant de base. <br>
+	Entrez un sigle inexistant pour créer un nouvel ensemble depuis aucune base.
+</p>
+
+<%= form_tag(:action => :initialize_tree, :controller => "creators") do %>
+
+        <%= label_tag 'Sigle'%> 
+        <%= text_field_tag 'base', @base, :size => 32, :maxlength => 64, :class => "text" %> <br>
+
+        <div> <%= submit_tag 'Commencer', :id => "button"%></div>
+
+<% end %>

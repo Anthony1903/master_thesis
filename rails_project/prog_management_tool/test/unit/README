@@ -1,0 +1,4 @@
+Logique des tests de modèles :
+
+le test d'une lien <belongs_to - has_many> se trouve dans le fichier dont le 
+nom est associé à l'objet contenant "belongs_to".

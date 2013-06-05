@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> <%= @titre %> </title>
+    <%= stylesheet_link_tag 'global'%>
+    <%= csrf_meta_tag %>
+    <%= javascript_include_tag :application %>
+
+    <title>
+      Outil d'aide à la gestion des programmes
+    </title>
+
+  </head>
+  <body>
+    <div id="bg1"></div>
+    <div id="bg2"></div>
+    <div id="outer">
+
+      <div id="header">
+          <%= render 'layouts/header' %>
+      </div>
+
+      <div id="banner">
+        <div class="captions">
+          <h2>Université catholique de Louvain</h2>
+        </div>
+        <%= image_tag("banner.jpg", :alt => "rss feed") %>
+      </div>
+
+      <div id="main">
+
+        <div id="content">
+          <%= render 'layouts/content' %>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="footer">
+      <%= debug(params) if Rails.env.development? %>
+      CSS template from <a href="#"><%= link_to "Freecsstemplates.org", "http://www.freecsstemplates.org" %></a>
+      <br> <%= image_tag("rails.png", :alt => "rss feed") %>
+    </div>
+
+  </body>
+</html>

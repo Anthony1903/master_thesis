@@ -1,0 +1,17 @@
+
+<div id="nav">
+	<ul>
+		<li>
+	    	<a href="#">
+	    		<%= link_to "Lister les cours", {:controller => "cours_objects", :action => "index"}%> 
+		    </a> 
+		</li>
+		<li>
+	    	<a href="#">
+				<%= link_to "Créer un nouveau cours", "/create_cours" %>
+		    </a> 
+		</li>
+	</ul>
+</div>
+
+<%= render 'shared/content_header' %>

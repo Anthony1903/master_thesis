@@ -1,0 +1,23 @@
+
+<h1> <%= @title %> </h1>
+
+<% if flash[:error] -%>
+
+	<p class='error'><%=h flash[:error] %></p>
+	<% flash[:error] = nil %>	
+	
+<% end -%>
+
+<% if flash[:success] -%>
+
+	<p class='success'><%=h flash[:success] %></p>
+	<% flash[:success] = nil %>
+
+<% end -%>
+
+<% if flash[:message] -%>
+
+	<p class='message'><%=h flash[:message] %></p>
+	<% flash[:message] = nil %>
+
+<% end -%>

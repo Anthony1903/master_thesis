@@ -1,0 +1,36 @@
+ <table>
+
+  <div class="field">
+    <tr>
+      <td> <%= f.label :creditsMax %> </td>
+      <td> <%= f.text_field :creditsMax %> 
+           <%= render "shared/help", :content => "ensemble_objects/help_messages/creditsMax_info", :size => "20x20" %> 
+      </td>
+    </tr>
+  </div>
+
+  <div class="field">
+    <tr>
+      <td> <%= f.label :creditsMin %> </td>
+      <td> <%= f.text_field :creditsMin %> 
+           <%= render "shared/help", :content => "ensemble_objects/help_messages/creditsMin_info", :size => "20x20" %> 
+      </td>
+    </tr>
+  </div>
+
+  <div class="field">
+    <tr>
+      <% if @content_restriction != true %>
+          <td> <%= f.label :contenu %> </td>
+          <td> <%= f.text_field :contenu %> 
+               <%= render "shared/help", :content => "ensemble_objects/help_messages/contenu_info", :size => "20x20" %> 
+          </td>
+      <% else %>
+          <td> <%= f.hidden_field :contenu %> </td>
+      <% end %>
+    </tr>
+  </div>
+
+  <%= render 'pmodules/fields', :f => f %>
+
+</table>

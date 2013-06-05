@@ -1,0 +1,17 @@
+
+<div id="nav">
+	<ul>
+		<li>
+	    	<a href="#">
+				<%= link_to "Lister les contraintes", {:controller => "contrainte_objects", :action => "index"}%> 
+		    </a> 
+		</li>
+		<li>
+	    	<a href="#">
+				<%= link_to "Créer une contrainte", "/create_contrainte" %>
+		    </a> 
+		</li>
+	</ul>
+</div>
+
+<%= render 'shared/content_header' %>

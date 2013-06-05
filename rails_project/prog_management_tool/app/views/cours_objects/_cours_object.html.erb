@@ -1,0 +1,62 @@
+
+<div id="box">
+	<h4> Champs </h4>
+	<% if(@cours_object == nil) then @cours_object = cours_object end %>
+
+	<b> Crédits : </b> <%= @cours_object.creditsMax %> crédits ECTS
+	<%= render "shared/help", :content => "cours_objects/help_messages/credits_info", :size => "20x20" %> <br>
+
+	<b> Durée des cours : </b> <%= @cours_object.dureeCours %>
+    <%= render "shared/help", :content => "cours_objects/help_messages/dureeCours_info", :size => "20x20" %> <br>
+    
+	<b> Durée des TP : </b> <%= @cours_object.dureeTP %>
+    <%= render "shared/help", :content => "cours_objects/help_messages/dureeTP_info", :size => "20x20" %> <br>
+    
+	<b> Professeur(s) : </b> <%= @cours_object.professeur %>
+    <%= render "shared/help", :content => "cours_objects/help_messages/professeur_info", :size => "20x20" %> <br>
+    
+	<b> Quadrimestre : </b> <%= @cours_object.quadri %>
+    <%= render "shared/help", :content => "cours_objects/help_messages/quadri_info", :size => "20x20" %> <br>
+    
+
+	<%= render 'pmodules/pmodule', :pmodule =>  @cours_object %>
+
+</div>
+
+<table> 
+	<tr>
+		<th> 
+			<% if !VersionManager.is_archive_version?(@cours_object.sigles_array[0]) %>	
+				<%= button_to "Modifier", 
+					edit_cours_object_path(@cours_object.id), 
+					:method => "get", 
+					:id => "button" %>	
+			<% end %>
+		</th>
+		<th> 
+			<%= button_to "Supprimer", 
+				cours_object_path(@cours_object.id), 
+				:method=>:delete, 
+				:class=>:destroy,
+				:confirm=>"Etes-vous certain de vouloir supprimer ce cours ?", 
+				:id => "button" %>
+		</th>
+</table>
+
+<div id="box">
+	
+	<h4> Structure </h4>
+	<%= render 'pmodules/parents', :pmodule =>  @cours_object %>
+
+	<% Dir.foreach(File.expand_path("app/assets/images/graphs")) do
+	   		|f| File.delete(File.expand_path("app/assets/images/graphs/#{f}")) if f != '.' && f != '..'
+	   end	%> 
+		
+	<% t = Time.now.to_f %>
+	<% @cours_object.build_complete_graph(t) %>
+
+	<div id="graph">
+		<%= image_tag("graphs/c_graph#{@cours_object.id}#{t}.png", :alt => "rss feed") %> 
+	</div>
+
+</div>

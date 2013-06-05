@@ -1,0 +1,111 @@
+
+<%= render 'context_menu' %>
+<% if(!@end) %>
+
+	<%= render "shared/help", :content => "import_managers/help_messages/loadNext_info", :size => "30x30" %>  <br>
+
+	<div id="graph">
+		<%= image_tag("graphs/import_graph.png", :alt => "rss feed") %> <br> 
+	</div>
+	
+	<%= render 'progress_bar' %>
+
+	<%= render 'shared/report'%>
+
+	<% if(@flag == "update") %>
+
+		<% @old = @current %><br>
+		<% @new = @mod %><br>
+		<%= render 'comparison'%>
+
+	<% else %>
+
+		<% if(@mod!=nil && @mod.mtype == "cours")%>
+
+			<% @cours_object = @mod %>
+			<%= form_for(@cours_object, :url => url_for(:controller => "import_managers", :action => "feedback")) do |f| %>
+			    <%= render 'cours_objects/fields', :f => f %>		 
+			    <div class="actions">
+		    	  	<%= f.submit "Soumettre", :id => "button" %>
+		        </div> 
+			<% end %>
+
+
+		<% end %>
+
+		<% if(@mod!=nil && @mod.mtype == "ensemble")%>
+
+			<% if(@mod.sigles.include?("UNKNOWN_")) %>
+
+				<p>
+					<b>Suggestion :</b> <br> 
+					Créer le module en tant que "cours" avec les paramètres suggérés. Ce type d'erreur survient souvent
+					lorsqu'un module n'existe plus en réalité, mais pour lequel les informations n'ont pas été totalement effacées dans
+					la base de données. L'outil d'édition de programmes permet de modifier ou supprimer ce type de modules de manière
+					adéquate une fois l'import terminé.
+				</p>
+
+				<table>
+					<td> 
+						<p><b> Créer en tant qu'ensemble </b></p>
+						<% @ensemble_object = @mod %>
+						<%= form_for(@ensemble_object, :url => url_for(:controller => "import_managers", :action => "feedback")) do |f| %>
+						    <%= render 'ensemble_objects/fields', :f => f %>		  
+							<div class="actions">
+						    	<%= f.submit "Soumettre", :id => "button" %>
+						    </div>
+						<% end %>
+					</td>
+					
+					<td>
+						 &nbsp;&nbsp;&nbsp;&nbsp;
+					</td>
+
+					<td>
+						<p> <b>Créer en tant que cours</b> </p>
+						<% @cours_object = CoursObject.new(@mod.extract_params) %>
+						<% @cours_object.dureeCours = 0 %>
+						<% @cours_object.dureeTP = 0 %>
+						<%= form_for(@cours_object, :url => url_for(:controller => "import_managers", :action => "feedback")) do |f| %>
+						    <%= render 'cours_objects/fields', :f => f %>		 
+						    <div class="actions">
+					    	  	<%= f.submit "Soumettre", :id => "button" %>
+					        </div> 
+						<% end %>
+					</td>
+
+				</table>
+
+
+			<% else %>
+
+				<% @ensemble_object = @mod %>
+				<%= form_for(@ensemble_object, :url => url_for(:controller => "import_managers", :action => "feedback")) do |f| %>
+				    <%= render 'ensemble_objects/fields', :f => f %>		  
+					<div class="actions">
+				    	<%= f.submit "Soumettre", :id => "button" %>
+				    </div>
+				<% end %>
+
+			<% end %>
+
+
+		<% end %>
+
+
+	<% end %>
+
+<% else %>
+
+	<%= render "shared/help", :content => "import_managers/help_messages/endReports_info", :size => "30x30" %>  <br>
+
+	Import terminé avec succès.<br>
+
+	<% $csv_loader.reports.each_pair do |k, v| %>
+		<% @sigle_title = k %> 
+		<% @report = v %>
+		<%= render 'shared/report'%>
+	<% end %>
+
+
+<% end %>

@@ -1,0 +1,60 @@
+
+  <div class="field">
+    <tr>
+      <td> <%= f.label :sigles %> : </td>
+      <td> <%= f.text_field :sigles %>
+           <%= render "shared/help", :content => "pmodules/help_messages/sigles_info", :size => "20x20" %>
+      </td>
+    </tr>
+  </div>
+
+  <div class="field">
+    <tr>
+      <td> (<%= f.label :intitule %>): </td>
+      <td> <%= f.text_field :intitule %> 
+           <%= render "shared/help", :content => "pmodules/help_messages/intitule_info", :size => "20x20" %>
+      </td>
+    </tr>
+  </div>
+
+  <div class="field">
+    <tr>
+      <td> (<%= f.label :dptCharge %>): </td>
+      <td> <%= f.text_field :dptCharge %>
+           <%= render "shared/help", :content => "pmodules/help_messages/dptCharge_info", :size => "20x20" %>
+      </td>
+    </tr>
+  </div>
+
+  <div class="field">
+    <tr>
+      <td> (<%= f.label :commentaire %>): </td>
+      <td> <%= f.text_field :commentaire %> 
+           <%= render "shared/help", :content => "pmodules/help_messages/commentaire_info", :size => "20x20" %>
+      </td>
+    </tr>
+  </div>
+
+
+  <div class="field">
+    <tr>
+       <% if @content_restriction != true %>
+          <td> <%= f.label :validite %> : </td>
+          <td> <%= f.text_field :validite %> 
+               <%= render "shared/help", :content => "pmodules/help_messages/validite_info", :size => "20x20" %>
+          </td>
+      <% else %>
+          <td> <%= f.hidden_field :validite %> </td>
+      <% end %>
+      
+    </tr>
+  </div>
+
+  <div class="field">
+    <tr>
+      <td> <%= f.label :langue %> : </td>
+      <td> <%= f.select(:langue,%w{fr angl fr-angl}) %> 
+           <%= render "shared/help", :content => "pmodules/help_messages/langue_info", :size => "20x20" %>
+      </td>
+    </tr>
+  </div>

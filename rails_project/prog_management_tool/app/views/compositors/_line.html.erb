@@ -1,0 +1,159 @@
+
+<!-- 
+	nécessite  :
+	node : un noeud contenant un module. 
+	parent : le module parent de "node" 
+	depth : un entier représentant la "profondeur" de node dans l'arbre formé par les contenus depuis la racine
+	mandatory : un booléen précisant si "mod" est un obligatoire ou non dans "parent"
+ --> 
+
+<% if node.data != nil %>
+		<% mod = node.data %>
+
+		<td class="large_restricted"> 
+
+			<% depth.times do %> . . <% end %>
+
+			<% if depth!=0 %> | <% end %>
+
+			<%
+				mand = false
+				if(parent!=nil)
+					parent.get_content_array.each do |s, a, o|
+						if(mod.sigles_array.index(s) != nil)
+							if(o)
+								mand = true
+							end
+						end
+					end
+				else
+					mand = true						
+				end
+			%>
+
+			<% if(mand) %>
+				<b>
+					<%= mod.sigles_array[0] %>
+				</b>
+			<% else %>
+					<%= mod.sigles_array[0] %>
+			<% end %>
+
+			<div id="info"> 
+				<%= mod.intitule %>
+			</div>
+
+		</td>
+
+		<% if mod.mtype == "ensemble" %>
+
+			<td class="restricted"> 
+
+				[<%= mod.creditsMin %>, <%= mod.creditsMax %>]
+				
+				<% res = SelectionConstraintsChecker.new(node).check_credits %>
+
+				<% if(!res) %>
+
+					<% 
+						def credits_for(node)
+							r = 0
+							node.children.each do |n|
+								r += credits_for(n)
+							end
+							if(node.children.size == 0 && node.is_selected?)
+								r += node.data.creditsMin
+							end
+							return r 
+						end
+
+						n = credits_for(node)
+					%>
+				
+					<div class="error">	
+						<%= n %>
+					</div>
+					
+				<% end %>
+					
+			</td>
+
+			<td> </td>
+
+			<td> </td>
+
+			<td> </td>
+
+			<td> </td>
+			
+		<%  else %>
+
+			<td class="restricted"> 
+				<%= mod.creditsMax %> 
+			</td>
+
+			<td class="restricted"> 
+				<%= mod.quadri %> 	
+			</td>
+
+			<td class="restricted"> 
+				<%= mod.dureeCours %> 	
+			</td>
+
+			<td class="restricted"> 
+				<%= mod.dureeTP %> 	
+			</td>
+
+			<td class="restricted"> 
+				<%= mod.langue %> 	
+			</td>
+
+		<% end %>
+        
+		<% if(node.children.size == 0 && mod != nil && parent != nil) %>
+			<% pair = [mod.sigles_array[0], parent.sigles_array[0]].join(" ") %>
+			<td class="restricted"> 
+				<% if(@selected_q1!=nil && @selected_q1.include?(pair)) %>
+		        	<%= check_box_tag 'selected_q1[]', pair, true %>
+				<% else %>
+		        	<%= check_box_tag 'selected_q1[]', pair %>				
+				<% end %>
+			</td>
+			<td class="restricted"> 
+				<% if(@selected_q2!=nil && @selected_q2.include?(pair)) %>
+		        	<%= check_box_tag 'selected_q2[]', pair, true %>
+				<% else %>
+		        	<%= check_box_tag 'selected_q2[]', pair %>				
+				<% end %>
+			</td>
+			<td class="restricted"> 
+				<% if(@selected_q3!=nil && @selected_q3.include?(pair)) %>
+		        	<%= check_box_tag 'selected_q3[]', pair, true %>
+				<% else %>
+		        	<%= check_box_tag 'selected_q3[]', pair %>				
+				<% end %>
+			</td>
+			<td class="restricted"> 
+				<% if(@selected_q4!=nil && @selected_q4.include?(pair)) %>
+		        	<%= check_box_tag 'selected_q4[]', pair, true %>
+				<% else %>
+		        	<%= check_box_tag 'selected_q4[]', pair %>				
+				<% end %>
+			</td>
+			<td class="restricted"> 
+				<% if(@selected_q5!=nil && @selected_q5.include?(pair)) %>
+		        	<%= check_box_tag 'selected_q5[]', pair, true %>
+				<% else %>
+		        	<%= check_box_tag 'selected_q5[]', pair %>				
+				<% end %>
+			</td>
+			<td class="restricted"> 
+				<% if(@selected_q6!=nil && @selected_q6.include?(pair)) %>
+		        	<%= check_box_tag 'selected_q6[]', pair, true %>
+				<% else %>
+		        	<%= check_box_tag 'selected_q6[]', pair %>				
+				<% end %>
+			</td>
+		<% end %>
+
+<% end %>	

@@ -1,0 +1,60 @@
+<header>
+
+	<div id="logo">
+		<h1>
+			<a href="#">Outil d'aide à la gestion des programmes</a>
+		</h1>
+	</div>
+	
+	<div id="nav">
+		<ul>
+			<li class="first">
+				<%= link_to "Accueil", root_path %>
+			</li>
+			<li class="last">
+				<a href="#"> Etudiant </a>
+
+				<ul class= "submenu">
+					<li>
+				    	<a href="#">
+				    		<%= link_to "Composer mon programme", compositors_path%> 
+					    </a> 
+					</li>
+				</ul>
+			</li>
+			<li class="last">
+				<a href="#"> Commission </a>
+
+				<ul class= "submenu">
+					<li>
+				    	<a href="#">
+		    				<%= link_to "Diplomes", diplome_objects_path%> 
+					    </a> 
+					</li>
+					<li>
+				    	<a href="#">
+				    		<%= link_to "Ensembles", ensemble_objects_path%> 
+					    </a> 
+					</li>
+					<li>
+				    	<a href="#">
+				    		<%= link_to "Cours", cours_objects_path %>
+					    </a> 
+					</li>
+					<li>
+				    	<a href="#">
+		    				<%= link_to "Contraintes", contrainte_objects_path%> 
+					    </a> 
+					</li>
+					<li>
+				    	<a href="#">
+		    				<%= link_to "Import", import_managers_path%> 
+					    </a> 
+					</li>
+				</ul>
+			</li>
+		</ul><br class="clear" />
+	</div>
+  </nav>
+
+</header>

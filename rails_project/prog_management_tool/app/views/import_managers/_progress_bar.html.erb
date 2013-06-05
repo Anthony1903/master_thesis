@@ -1,0 +1,17 @@
+
+<% tot = $csv_loader.stack_initial_size.to_f %>
+<% val = tot - $csv_loader.stack_current_size.to_f %>
+<% percent = (val / tot) * 100 %>
+
+<div id="meter_comment">
+	Etat d'avancement pour l'import de <%= $csv_loader.root_intit_abrege %> <br>
+</div>
+
+<div class="meter">
+	<% width = "width: " + percent.to_s + "%" %>
+	<span style= "<%= width %>" > </span>
+</div>
+
+<div id="meter_comment">
+	<%= $csv_loader.stack_initial_size - $csv_loader.stack_current_size %> / <%= $csv_loader.stack_initial_size %> chargés <br> 
+</div>

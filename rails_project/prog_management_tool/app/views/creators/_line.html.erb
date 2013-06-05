@@ -1,0 +1,178 @@
+
+<!-- 
+	nécessite  :
+	node : un noeud contenant un module. 
+	parent : le module parent de "node" 
+	depth : un entier représentant la "profondeur" de node dans l'arbre formé par les contenus depuis la racine
+	root : la racine de l'arbre contenant "node" et "parent", 
+	editable : booléen indiquand si le module peut être édité ou non
+ --> 
+
+<% if node.data != nil %>
+	<% mod = node.data %>
+
+	<td class="restricted_hidden"> 
+		
+		<% if(mod.mtype == "ensemble") %>
+  			<div id="ensemble_in_list">
+  		<% end %>
+
+				<% depth.times do %>
+					. .
+				<% end %>
+
+				<% if depth!=0 %>
+					|
+				<% end %>
+			
+				<%
+					mand = false
+					if(parent!=nil)
+						parent.get_content_array.each do |s, a, o|
+							if(mod.sigles_array.index(s) != nil)
+								if(o)
+									mand = true
+								end
+							end
+						end
+					else
+						mand = true						
+					end
+				%>
+
+				<% if(mand) %>
+					<b>
+						<%= mod.sigles_array[0] %>
+					</b>
+				<% else %>
+						<%= mod.sigles_array[0] %>
+				<% end %>
+
+				<div id="info"> 
+					<%= mod.intitule %>
+				</div>
+			</div>
+	
+		<% if(mod.mtype == "ensemble") %>
+  			</div>
+  		<% end %>
+
+	</td>
+
+	<% if mod.mtype == "ensemble" %>
+
+		<td class="restricted"> 
+
+			[<%= mod.creditsMin %>, <%= mod.creditsMax %>]
+			
+			<% if !editable && !DbStructuralConstraintsChecker.new(mod).check_credits_children() %>
+				<% sums = mod.credits_content() %>
+				<div class="error">	
+					<br> [<%= sums[:sum_o_min] %>, <%= sums[:sum_max] %>]
+				</div>
+			<% end %>
+
+			<% if(editable) %>
+
+				<% res = TreeStructuralConstraintsChecker.new(node, root).check_credits_children %>
+
+				<% if(!res) %>
+
+					<% 
+						max = 0
+						min_o = 0
+						content_array = mod.get_content_array
+						node.children.each do |n| 
+							max += n.data.creditsMax
+							content_array.each do |s, a, o|
+								if(n.data.sigles_array.index(s) != nil && o == true)
+									min_o += n.data.creditsMin
+								end
+							end
+						end
+					%>
+				
+					<div class="error">	
+						[<%= min_o %>, <%= max %>]
+					</div>
+				<% end %>
+				
+			<% end %>
+
+		</td>
+		<td class="restricted"> 
+		</td>
+		<td class="restricted"> 
+		</td>
+		<td class="restricted"> 
+		</td>
+
+		<% if editable %>
+			
+			<% if parent!=nil %>
+				<td class="restricted"> 
+				    <%= form_tag(:action => :remove, :controller => "creators", :sigle => mod.sigles_array[0], :parent => parent.sigles_array[0]) do %>
+				        <%= submit_tag "-", :id => "button", :class => "remove_button" %>
+				    <% end %>
+				</td>
+			<% else %>
+					<td class="restricted"> 
+					</td>
+			<%end%>
+
+			<td class="restricted">
+			    <%= form_tag(:action => :new_module, :controller => "creators", :parent => mod.sigles_array[0]) do %>
+			        <%= submit_tag "+", :id => "button", :class => "add_button" %>
+			    <% end %>
+			</td>
+
+		<% end %>
+
+	<%  else %>
+		<td class="restricted"> 
+			<%= mod.creditsMax %> 
+		</td>
+
+		<td class="restricted"> 
+			<%= mod.dureeCours %> 
+		</td>
+
+		<td class="restricted"> 
+			<%= mod.dureeTP %> 
+		</td>
+
+		<td class="restricted"> 
+			<%= mod.quadri %> 	
+		</td>
+
+		<% if editable %>
+			<% if parent!=nil %>
+				<td class="restricted">
+				    <%= form_tag(:action => :remove, :controller => "creators", :sigle => mod.sigles_array[0], :parent => parent.sigles_array[0]) do %>
+				        <%= submit_tag "-", :id => "button", :class => "remove_button" %>
+				    <% end %>
+				</td>
+			<% end %>
+
+			<td class="restricted"> 
+				
+			</td>
+		<% end %>
+
+
+	<% end %>
+
+	<% if(editable) %>
+		<td class="restricted">
+
+		    <%= form_tag(:action => :edit_module, :controller => "creators", :sigle => mod.sigles_array[0]) do %>
+		        <%= submit_tag "Edit", :id => "button", :class => "edit_button" %>
+		    <% end %>
+			
+		</td>
+	<% else %>
+		<td class="restricted"> 
+		</td>
+	<% end %>
+
+<% end %>

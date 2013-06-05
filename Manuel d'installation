@@ -1,0 +1,134 @@
+*******************************************************************************
+Popolo Cagnisi Anthony 						     05/06/2013
+			
+			     MANUEL D'INSTALLATION
+
+*******************************************************************************
+
+-------------------------------------------------------------------------------
+				 Commentaires 
+-------------------------------------------------------------------------------
+
+Ce manuel décrit les différentes étapes nécessaires à l'installation complète
+de l'application. Si le texte fourni est général, les commandes à exécuter 
+sont propres au système d'exploitation utilisé lors du développement de 
+l'application : Ubuntu 12.04.
+
+-------------------------------------------------------------------------------
+	 			   Prérequis 
+-------------------------------------------------------------------------------
+
+Installation de Ruby 1.9.3
+
+	sudo apt-get install ruby1.9.3 
+
+Installation de Rails 3.2
+
+	sudo gem install rails --include-dependencies
+
+Installation de MySQL
+
+	sudo apt-get install mysql-server
+
+Installation de Git (utile à Bundler pour télécharger certaines gems)
+
+	sudo apt-get install git
+
+-------------------------------------------------------------------------------
+		    Configuration des bases de données MySQL 
+-------------------------------------------------------------------------------
+
+Ajouter un utilisateur et un mot de passe.
+
+	mysql -u root -p
+
+	(Entrer le password de l'administrateur.)
+
+	CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+
+Donner suffisamment de droits à cet utilisateur pour créer et modifier des 
+bases de données.
+
+	GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'localhost';
+	FLUSH PRIVILEGES;
+
+Placer ces informations dans le fichier "config/database.yml"
+
+	Par défaut, les informations suivantes sont considérées :
+		username: tool
+		password: azert
+
+Eventuellement changer le nom des bases de données qui seront utilisées, 
+dans ce même fichier.
+
+	Par défaut, les noms suivants sont considérés : 
+			
+		Nom de la base de donnée utilisée pour le développement
+		database: memoire_prog_management_tool_development
+		
+		Nom de la base de donnée utilisée pour les tests
+		database: memoire_prog_management_tool_test
+		
+		Nom de la base de donnée utilisée pour la production
+		database: prog_management_tool_production
+
+-------------------------------------------------------------------------------
+			     Installation des gems
+-------------------------------------------------------------------------------
+
+Exécuter la commande suivants requise pour l'installation de certaines gems.
+
+	sudo apt-get install libmysql-ruby libmysqlclient-dev build-essential 
+	graphviz
+
+Se placer dans le répertoire racine du projet 
+	("rails_project/prog_management_tool")
+
+Exécuter 
+
+	bundle install
+
+-------------------------------------------------------------------------------
+			  Création des bases de données 
+-------------------------------------------------------------------------------
+
+Se placer dans le répertoire racine du projet 
+	("rails_project/prog_management_tool")
+
+Exécuter les commandes suivantes 
+
+	rake db:create RAILS_ENV=production
+	rake db:create RAILS_ENV=development
+	rake db:create RAILS_ENV=test
+	rake db:migrate RAILS_ENV=production
+	rake db:migrate RAILS_ENV=development
+	rake db:migrate RAILS_ENV=test
+
+-------------------------------------------------------------------------------
+			      Lancement des tests 
+-------------------------------------------------------------------------------
+
+Se placer dans le répertoire racine du projet 
+	("rails_project/prog_management_tool")
+
+Exécuter 
+
+	rake test
+	
+-------------------------------------------------------------------------------
+			       Lancement du server 
+-------------------------------------------------------------------------------
+
+Se placer dans le répertoire racine du projet 
+	("rails_project/prog_management_tool")
+
+Exécuter la commande suivante pour lancer le serveur sur le port par défaut 
+(3000) en "localhost".
+
+	rails server -e production
+
+Exécuter la commande suivante pour lancer le serveur sur le port "12345" à 
+l'adresse "1.2.3.4".
+
+	rails server -e production -p 12345 -b 1.2.3.4
+	
