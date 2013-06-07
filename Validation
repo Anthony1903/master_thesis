@@ -11,14 +11,14 @@ Popolo Cagnisi Anthony                                               05/06/2013
 -------------------------------------------------------------------------------
 
 Les commentaires qui suivent proviennent des utilisateurs (membres de la 
-commission des programmes d'études en sciences informatiques). Ceux-ci ont été 
-faits lors du processus de validation conduit par le scénario.
+Commission des programmes d'études en sciences informatiques). Ceux-ci ont été 
+réalisés lors du processus de validation conduit par le scénario.
 
 Un "+" devant un commentaire signifie qu'une solution a été apportée, dans la 
 dernière version, pour résoudre le problème soulevé par le commentaire.
 
 Un "-" devant un commentaire signifie qu'aucune mesure n'a été prise à ce jour,
-ou qu'aucune solution satifaisante n'a été trouvée.
+ou qu'aucune solution satisfaisante n'a été trouvée.
 
 -------------------------------------------------------------------------------
                                   LISTING
@@ -69,7 +69,7 @@ RAPPORTS
     - L'utilisateur fonctionne par intitulé et pas seulement par sigle, il 
       faudrait donc faire référence à l'intitulé plus souvent.
     - Rendre les messages d'erreur plus explicites, même si ils doivent 
-      faire plusieurs lignes.
+      prendre plusieurs lignes.
 
 AUTRES
     + Ajouter des descriptions sur chaque page.
